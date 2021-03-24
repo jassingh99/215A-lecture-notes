@@ -1,0 +1,78 @@
+
+\begin{definition}
+    Let $ A $ be a ring. We define $ \spec(A) = \{ \mathfrak{p} \subseteq A : \mathfrak{p} \text{ is a prime ideal} \} $.
+\end{definition}
+
+\begin{definition}
+    Let $ I \subseteq A $ an ideal. We define $ V(I) = \{ \mathfrak{p} \in \spec(A) : I \subseteq \mathfrak{p} \} $.
+\end{definition}
+
+This is called the \textit{prime spectrum} of $ A $, or simply the \textit{spectrum}. We introduce the \textit{Zariski topology} on the prime spectrum whose closed subsets are precisely the $ V(I) $. We would like to describe the ring homomorphisms from $ A $ to $ k $ for all fields $ k $. Indeed, for $ f\colon A \longrightarrow k $, the kernel of this is a prime ideal of $ A $. Conversely, all prime ideals arise in this way. Indeed, for $ \frak{p} \in \spec(A) $, we have that $ \frak{p} $ is the kernel of
+
+    \[
+     \begin{tikzcd}
+         A \arrow[r] & A/\frak p \arrow[r] & \Frac(A/\frak{p})
+     \end{tikzcd}
+    \]
+
+\begin{example}
+    Consider $ \spec \mathbb Z = \{ (0), (2), (3), (5), (7), \dots \} $. Homomorphisms $ \mathbb Z \longrightarrow k $ will necessarily factor through one of the above, which is $ \mathbb Z / (p) $ for $ p $ prime or $ \mathbb Q $ for $ 0 $. We also have the following picture of $ \spec\mathbb Z.
+    \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\$
+\end{example}
+
+\begin{definition}
+    For $ f_1, \dots, f_r \in A $, let $ \{ f_1 = 0,\dots, f_r = 0 \} $ denote $ V((f_1,\dots, f_r)) $.
+\end{definition}
+\begin{example}
+    $ \{ 12 = 0 \} = \{ (2), (3) \} $, which correspond to the fields where $ 12  = 0 $.
+\end{example}
+
+\begin{theorem}
+    The Zariski topology is a topology.
+\end{theorem}
+\begin{proof}
+    The only tricky part is to prove that $ V(I \cap J) \subseteq V(I) \cup V(J) $. Indeed, let $ \frak{p} \in V(I \cap J) $. If $\frak p \notin V(I) \cup V(J) $ then there are $a \in I - \frak p$ and $b \in J - \frak p$. Then $ab \in I \cap J \subseteq \frak p$. However, as $\frak p$ is prime, $ab \notin \frak p$.
+\end{proof}
+
+\begin{theorem}
+    Let $f\colon A \longrightarrow B$ a ring homomorphism. Define\[\spec(f) \colon \spec(A) \longrightarrow \spec(B)\] via $\frak{p} \mapsto f^{-1}[\frak{p}]$. Then this is continuous. Furthermore, the map \[\spec(A/I) \longrightarrow \spec(A)\] is a homeomorphism to the closed subset $V(I)$.
+\end{theorem}
+\begin{proof}
+    Let $g = \spec(f)$. We show that $g$ pulls back closed sets to closed sets. Let $J = (f[I])$. We claim that $g^{-1}[V(I)] = V(J)$. Indeed, \[\frak p \in g^{-1}[I] \iff g(\frak p) \in V(I) \iff f^{-1}[\frak p] \in V(I) \iff\] 
+    \[I \subseteq f^{-1}[\frak p] \iff f[I] \subseteq \frak p \iff J \subseteq \frak p \iff \frak p \in V(J)\]
+    So $g$ is indeed continuous.\\
+    Let $g$ be the map $\spec(A/I) \longrightarrow \spec(A)$. $g$ is a bijection onto $V(I)$ by correspondence. It is continuous as above, so we must show that it is a closed map. Let $J \subseteq A/I$ an ideal, and let $K \subseteq A$ be its inverse image. Then
+    \[\frak p \in g[V(J)] \iff \frak p = g(\frak q) \text{ for some } \frak q \supseteq J \text{ prime} \iff K \subseteq \frak p\]
+    so $g[V(J)] = V(K)$.
+\end{proof}
+
+\begin{theorem}
+    Let $A$ be a ring. Recall the nilradical $\nil A = \{x \in A : \exists n \geq 1 \textup{ s.t. } x^n = 0\}$. Then $\nil A = \bigcap\spec A$.
+\end{theorem}
+\begin{proof}
+    ``$\subseteq$'': Let $a \in \nil A$. Then some $a^n = 0$. Let $\frak p \in \spec A$. Then in the domain $A/\frak p$, $a^n = 0$, so $a=0$, so $a \in \frak p$.\\
+    ``$\supseteq$'': Let $a \notin \nil A$. We find a prime ideal that does not contain $a$. Let $S$ be the set of all ideals that contain no power of $a$. By assumption, $0 \in S$. Then by Zorn's lemma, there is a maximal element $\frak p \in S$. We claim that $\frak p$ is prime. $x \notin \frak p$ so $\frak p \neq A$. Furthermore, let $x, y \notin \frak p$. We claim $xy \notin \frak p$. As $x \notin \frak p$, $(x) + \frak p \notin S$ by maximality, so some $a^n \in (x) + \frak p$. Similarly, some $a^m \in (y) + \frak p$. Then $a^{n+m} \in (xy) + \frak p $ so $xy \notin \frak p$.
+\end{proof}
+
+\begin{corollary}
+    Let $I \subseteq A$ an ideal. Recall the  radical of $I$ $\rad I = \{x \in A : \exists n \geq 1 \textup{ s.t. } x^n \in I\}$. Then $\rad I = \bigcap V(I)$.
+\end{corollary}
+\begin{proof}
+    Observe that $\rad(I)$ is the inverse image of $\nil(A/I)$, which is $\bigcap\spec A$ as above. Then we are done by correspondence.
+\end{proof}
+
+\begin{theorem}
+    Let $I, J \subseteq A$ ideals. Then $V(I) = V(J) \iff \rad(I) = \rad(J)$.
+\end{theorem}
+\begin{proof}
+    Indeed, if $V(I) = V(J)$ then we are done by the corollary. Conversely, let $\rad(I) = \rad(J)$. We claim that $I \subseteq \frak p \iff \rad(I) \subseteq \frak p$ for any prime $\frak p$. Indeed, $I \subseteq \rad(I)$ so one direction is immediate. Conversely, if $I \subseteq \frak p$ then $\rad I \subseteq \rad \frak p = \frak p$. Thus, $V(I) = V(\rad I)$ so $V(I) = V(J)$.
+\end{proof}
+
+This tells us that there is a one to one order reversing correspondence between radical ideals of $A$ (those that are equal to their radical) and closed subsets of $\spec A$ via $I \mapsto V(I)$.
+
+\begin{remark}
+    We showed earlier that $V(I \cap J) = V(I) \cup V(J)$. We show now that $V(IJ) = V(I) \cup V(J)$.
+\end{remark}
+\begin{proof}
+    By the theorem, it suffices to show that $\rad(IJ) = \rad(I \cap J)$. We know $IJ \subseteq I \cap J$ so $\rad(IJ) \subseteq \rad(I \cap J)$. Conversely, let $x \in I \cap J$. Then $x^2 \in IJ$ so $x \in \rad(IJ)$. As $\rad$ is order preserving and idempotent, we therefore have $\rad(I \cap J) \subseteq \rad(IJ)$.
+\end{proof}

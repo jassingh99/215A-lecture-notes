@@ -1,0 +1,43 @@
+
+\begin{lemma}
+    Let $A \subseteq B$ integral. Then we have the induced map $\spec(B) \longrightarrow \spec(A)$ via $\frak q \mapsto \frak q \cap A$. We claim that $\frak q$ is maximal if and only if $\frak q \cap A$ is maximal. Observe that this fails when the extension is not integral. For example, consider the inclusion $\mathbb C \subseteq \mathbb C[x]$. The associated map on spectra takes $0 \subseteq \mathbb C[x] \mapsto 0 \subseteq \mathbb C$, i.e. a nonmaximal ideal maps to a maximal ideal.
+\end{lemma}
+\begin{proof}
+    By a lemma in the previous section, $B/\frak q$ is integral over $A/\frak q \cap A$. It therefore suffices to show that for $A \subseteq B$ an integral extension of domains, that $B$ is a field if and only if $A$ is. Indeed, let $A$ be a field. Let $y \in B - 0$. Then as the extension is integral, we have $y^n + a_{n-1}y^{n-1} + \dots + a_0 = 0$ for $a_i \in A$. Let $n$ be minimal. Then $a_0 \neq 0$, as otherwise we may cancel out $y$ as we are in a domain. We have then that $y(y^{n-1} + a_{n-1}y^{n-2} + \dots + a_1) = -a_0 \in A - 0 \in A^\times$, so $y \in B^\times$, so $B$ is a field.\\
+    Conversely, let $B$ be a field. Let $x \in A - 0$. We have that $x^{-1} \in B$ exists. We claim that it's in $A$. Indeed, we have that it satisfies some $x^{-n} + a_{n-1} x^{-(n-1)} + \dots + a_0 = 0$, $a_i \in A$. We multiply this equation by $x^{n-1}$ to yield $x^{-1} = -(a_{n-1} + a_{n-2}x + \dots + a_) x^{n-1}) \in A$, so $A$ is a field.
+\end{proof}
+
+We have the following results about the associated map on spectra.
+\begin{enumerate}
+    \item If $A \mapsto B$ is onto, then $\spec(B) \longrightarrow \spec(A)$ is the inclusion of a closed subset.
+    \item The map $A \longrightarrow A[S^{-1}]$ induces the map $\spec(A[S^{-1}]) \longrightarrow \spec(A)$ is injective.
+\end{enumerate}
+We would like to investigate what happens in the case of the map being finite or integral.
+
+\begin{definition}
+    An affine scheme $X$ is the spectrum of some ring. We write $\mathcal O(X)$ for this ring. This is called the ring of regular functions on $X$. A morphism of affine schemes $X \longrightarrow Y$ is the spectral map of a ring homomorphism $\mathcal O(Y) \longrightarrow \mathcal O(X)$. We say morphism of affine schemes is finite, finite type, or integral if the associated ring map is finite, finite type, or integral respectively. Of course, this says that we can view the category of affine schemes as the opposite category of the category of commutative rings.
+\end{definition}
+
+\begin{lemma}
+    Let $A \subseteq B$ integral. Let $\frak q \subseteq \frak q' \in \spec(B)$ such that $\frak q \cap A = \frak q' \cap A$. Then $\frak q = \frak q'$.
+\end{lemma}
+\begin{proof}
+    Let $\frak p = \frak q \cap A = \frak q' \cap A$. As $A \subseteq B$ is integral, $A_\frak p \subseteq B_\frak p$ is integral. This is a slight abuse of notation, as $\frak p$ is not necessarily a prime ideal (or an ideal) of $B$. We write $B_\frak p = B[(A - \frak p)^{-1}]$. let $\frak m$ be the maximal ideal of the lcoal ring $A_\frak p$. Then $\frak m = \frak p A_\frak p$. Let $\frak n = \frak q B_\frak p$, $\frak n' = \frak q' B_\frak p$. Then as $\frak q \subseteq \frak q'$, $\frak n \subseteq \frak n'$. We claim that $\frak n \cap A_\frak p = \frak n' \cap A_\frak p = \frak m$. This holds as localization commutes with pulling back prime ideals by correspondence. Then as these pull back to a maximal ideal, $\frak n$ and $\frak n'$ are maximal, so as $\frak n \subseteq \frak n'$, they are equal. Thus, by correspondence, $\frak q$ = $\frak q'$.
+\end{proof}
+
+\begin{theorem}
+    Let $A \subseteq B$ integral. Then the map $\spec B \longrightarrow \spec A$ is onto, i.e. all prime ideal $\frak p \subseteq A$ are of the form $\frak q \cap A$ for some prime ideal $\frak q \subseteq B$.\\
+    This need not hold for non-integral extensions. Indeed, consider $k[t] \subseteq k[t, t^{-1}]$. As discussed previously, the spectral map of a localization is injective, so the map $\spec(k[t, t^{-1}]) \longrightarrow \spec(k[t])$, which we view as the inclusion of the open subset $\spec(k[t]) - \{0\}$. We may also view $k[t, t^{-1}]$ as $k[x, y] / (xy - 1)$, so the map looks like
+    \\\\\\\\\\\\\\\\\\\\
+\end{theorem}
+\begin{proof}
+    Let $\frak p \subseteq A$ be a prime ideal. As $A \subseteq B$ is integral, $A_\frak p \subseteq B_\frak p$ is also integral. By exactness of localization, we have the commutative diagram
+    \[
+    \begin{tikzcd}
+        A \arrow[d] \arrow[r] &B \arrow[d]\\
+        A_\frak p \arrow[r] &B_\frak p
+    \end{tikzcd}
+    \]
+    
+    $A_\frak p$ is local, therefore it is nonzero so $B_\frak p$ is nonzero. Then let $\frak n \subseteq B_\frak p$ be maximal. its pullback to $A_\frak p$ is maximal, so as $A_\frak p$ is local it equals its maximal ideal $\frak m = \frak n \cap A_\frak p$. Now, let $\frak q$ be the pullback of $\frak n$ along $B \longrightarrow B_\frak p$. Then the pullback of $\frak q$ along $A \longrightarrow B$ is $\frak p$, as can be seen by applying the Spec functor to the above commutative diagram. Thus, the map $\spec(B) \longrightarrow \spec(A)$ is onto.
+\end{proof}

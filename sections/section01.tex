@@ -1,0 +1,31 @@
+
+\begin{lemma}
+    Let $ f\colon A \longrightarrow B $ be a ring homomorphism, $ \mathfrak{p} \subseteq B $ a prime ideal. Then $ f^{-1}[\mathfrak{p}] \subseteq A $ is a prime ideal.
+\end{lemma}
+\begin{proof}
+    We have that $ B / \mathfrak{p} $ is a domain. Furthermore, $ f^{-1}[\mathfrak{p}] $ is the kernel of the composition
+    
+    \[
+     \begin{tikzcd}
+         A \arrow[r] & B \arrow[r] & B / \mathfrak{p}
+     \end{tikzcd}
+    \]
+    
+    Thus $ A / f^{-1}[\mathfrak{p}] $ is isomorphic to the image of the composition, which is a subring of the domain $ B / \mathfrak{p} $ and is therefore a domain.
+\end{proof}
+
+\textbf{Remark.} The same does not hold for maximal ideals. Indeed, $ 0 \subseteq \mathbb Q $ is a maximal ideal but its preimage under the inclusion $ \mathbb Z \longrightarrow \mathbb Q $ is $ 0 $, which is not maximal in $ \mathbb Z $.
+
+\begin{theorem}
+    Every nonzero ring contains a maximal ideal.
+\end{theorem}
+\begin{proof}
+    Let $ A $ be a nonzero ring. Consider $ S = \{ I \subsetneq A : I \text{ is an ideal}\} $ This is nonempty as because $ A \neq 0 $, $ 0 \in S$. One must then check that the union of a chain of ideals is an ideal. Such a union is not the whole of $ A $ as none of the ideals contains a unit, lest they be the whole of $ A $. Thus, by Zorn's lemma, $ S $ contains a maximal element, i.e. a maximal ideal.
+\end{proof}
+
+\begin{corollary}
+    Let $ A $ be a ring, $ I \subsetneq A $ an ideal. Then $ I $ is contained in some maximal ideal.
+\end{corollary}
+\begin{proof}
+    Apply the above to $ A/I $ and use the order preserving correspondence between ideals of $ A/I $ and ideals of $ A $ containing $ I $.
+\end{proof}

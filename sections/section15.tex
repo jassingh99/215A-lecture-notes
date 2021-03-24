@@ -1,0 +1,58 @@
+
+\begin{lemma}
+    Let $k$ be a field. Let $f \in k[x_1, \dots, x_n] - 0$. Then there exists a $k$-algebra homomorphism $k[x_1, \dots, x_n] \longrightarrow k[y_1, \dots, y_n]$ such that $f$ maps to a nonzero constant times a monic polynomial in $y_n$, i.e. $f = c y_n^d + \text{(terms of lower n-degree)}$. Geometrically, this means that given any hypersurface $\{f = 0\} \subseteq \mathbb A_k^n$ we can change coordinates such that $\{f = 0\} \longrightarrow \mathbb A_k^n \longrightarrow \mathbb A_k^{n-1}$ is a finite morphism. For example, take $f = x_1 x_2 - 1 \in k[x_1, x_2]$. The closed subset $\{f = 0\} \subseteq \mathbb A_k^2$ looks like
+    \\\\\\\\\\\\\\\\\\\\
+    on which we can apply the change of coordinates $x_1 = y_1 + y_2$, $x_2 = y_1 - y_2$, which looks like rotation. Indeed, in $k[y_1, y_2]$, $f = y_1^2 - y_2^2 - 1$. The closed subset $\{f=0\} \subseteq \mathbb A_k^2$ looks like
+    \\\\\\\\\\\\\\\\\\\\
+\end{lemma}
+\begin{proof}
+    Let $f \in k[x_1, \dots, x_n] - 0$. We write $f = \sum a_I x^I$, where $I$ ranges over tuples $(i_1, \dots, i_n) \in \mathbb N^n$ and $a_I = a_{i_1, \dots, i_n}$ and $x^I = x^{i_1} \dots x^{i_n}$. Of course, we require all but finitely many $a_I$ to be $0$. Let $(i_1, \dots, i_n)$ be a maximal (under the lexicographic ordering) such that $a_I \neq 0$. Let $m_1 >> m_2 >> \dots >>m_{n-1} >> 1$. Then $f(y_1 + y_n^{m_1}, \dots, y_{n-1} + y_n^{m_{n-1}}, y_n) = a_{i_1, \dots, i_n} y_n^{m_1 i_1 + m_2 i_2 + \dots + m_{n-1} i_{n-1} + i_n} + $(lower  total degree terms). One can see this by seeing that in expanding out $f(y_1 + y_n^{m_1}, \dots, y_{n-1} + y_n^{m_{n-1}}, y_n)$, the $i_1$ term is given more weight via $m_1$ being large relative to the other $m_k$. One can check that this change of variables is an isomorphism and that $f$ satisfies the desired property in the image.
+\end{proof}
+
+\begin{theorem}[Noether Normalization Lemma]
+    Let $R \neq 0$ be a finitely generated algebra over a field $k$. Then there exists $n \geq 0$ such that there exists a finite inclusion $k[x_1, \dots, x_n] \longrightarrow R$.
+\end{theorem}
+\begin{proof}
+    We have a surjection $k[x_1, \dots, x_N] \longrightarrow R$ by assumption. Let $N$ be minimal. If $N = 0$, then $k \longrightarrow R$ is a surjection, so as $R \neq 0$, $R = k$ and we are done. Else, let $I$ be the kernel of the map. Again, if it's $0$ then we are done. Suppose not, then let $f \in I - 0$. By the lemma, we may suppose that $f$ is a nonzero constant time a monic polynomial in $x_N$. That monic polynomial itself is in $I$ as $I$ is an ideal. This allows us to kill higher powers of $x_N$, so there is a finite map $k[x_1, \dots, x_{N-1}] \longrightarrow R$. Call the image of this map $S$. Then by induction, $S$ is finite over some $k[x_1, \dots, x_n] \subseteq S$, so $R$ is.
+\end{proof}
+
+Geometrically, this says that for $X$ an affine scheme of finite type over $k$, we get an $n \geq 0$ and a finite surjection $X \longrightarrow \mathbb A_k^n$. We have the following picture
+\\\\\\\\\\\\\\\\\\\\
+\begin{corollary}[Hilbert's Nullstellensatz, weak form]
+    Let $R$ be an algebra of finite type over a field $k$ such that $R$ is a field. Then $R$ is finite over $k$.
+\end{corollary}
+\begin{proof}
+    By the Noether normalization lemma, there exists a finite inclusion $k[x_1, \dots, x_n] \longrightarrow R$. As $R$ is a field, $0$ is a maximal ideal of $R$ so its pullback along this map is maximal. Of course, this is just the kernel of this map, which is $0$. Thus, $k[x_1, \dots, x_n]$ is a field, so $n = 0$ and we are done.
+\end{proof}
+
+\begin{corollary}[Hilbert's Nullstellensatz, another form]
+    Let $k$ be an algebraically closed field. We know that even without the algebraically closed assumption, there is an inclusion $k^n \subseteq \mathbb A_k^n$ via $(a_1, \dots, a_n) \mapsto (x_1 - a_1, \dots, x_n - a_n)$, which is a maximal ideal, hence a closed point. With this additional assumption, we have that all maximal ideals (hence all closed points) are of this form.
+\end{corollary}
+\begin{proof}
+    Let $\frak m \subseteq k[x_1, \dots, x_n]$ maximal. Then $k[x_1, \dots x_n] / \frak m$ is a field that is a $k$-algebra of finite type. Then by the weak Nullstellensatz, it's finite over $k$. As $k$ is algebraically closed, it equals $k$. Thus, we have a surjection $f \colon k[x_1, \dots, x_n] \longrightarrow k$ with kernel $\frak m$. By freeness, $f$ is toally and uniquely determined by the choice of $c_i = f(x_i)$. Indeed, $f$ is simply evaluation at $(c_1, \dots, c_n)$. Thus, we have $(x_1 - c_1, \dots x_n - c_n)$, which is the ideal of polynomials vanishing at $(c_1, \dots, c_n)$, is contained in the kernel $\frak m$. As these are both maximal, $\frak m = (x_1 - c_1, \dots, x_n - c_n)$.
+\end{proof}
+
+\begin{remark}
+    As discussed, for $k$ not algebraically closed we still have the inclusion $k^n \subseteq \mathbb A_k^n$, but it does not necessarily consist of all closed points. Indeed, for $k = \mathbb R$, the maximal ideal $(x^2 + 1)$ is not of this form. In fact, the converse holds as well, i.e. if $k$ is not algebraically closed then there exists a maximal ideal not of this form for some $n$. Indeed, if $k$ is not algebraically closed then there is a proper finite field extension $K/k$. Then $K$ is, in particular a finite type $k$-algebra, so we have a surjection $k[x_1, \dots, x_n] \longrightarrow K$. Its kernel is then a maximal ideal, and cannot be of this form, as $k[x_1, \dots, x_n] / (x_1 - c_1, \dots, x_1 - c_n) = k \neq K$.
+\end{remark}
+
+\begin{definition}
+    The Jacobson radical of a ring $R$ is the intersection of all maximal ideals of $R$. We write this as $J(R)$
+\end{definition}
+\begin{remark}
+    We always have $\nil(R) \subseteq J(R)$. However, the converse need not hold. Indeed, take the local ring $R = \mathbb Z_{(2)}$. Then as $R$ is a domain, its nilradical is trivial, yet its Jacobson radical is the unique maximal ideal $(2) \mathbb Z_{(2)}$, which is nonzero.
+\end{remark}
+
+\begin{lemma}
+    Let $R$ be an algebra of finite type over a field $k$. Then $J(R) = \nil(R)$.
+\end{lemma}
+\begin{proof}
+    As discussed, $\nil(R \subseteq J(R)$. Conversely, let $f \in J(R)$. Take a prime ideal $\frak p$. We would like to show that $f = 0$ in $R/\frak p$. By correspondence, $f \in J(R/\frak p)$. Furthermore, $R/\frak p$ is an algebra of finite type over $k$. Then it suffices to show that the Jacobson radical of a domain of finite type over a field is trivial. Let $R$ be such a domain. Let $f \in J(R)$. If $f \neq 0$ then $R[1/f]$ is a domain of finite type over $k$. Then $R[1/f]$ contains a maximal ideal $\frak m$. By the weak Nullstellensatz, $R[1/f]/\frak m$ is finite over $k$. Consider $\frak n = \ker(R \longrightarrow R[1/f]/\frak m)$. The image of this map is a subring of a field, so it is therefore a domain. It is also a finite $k$-algebra, so it is a field. Thus, $\frak n$ is maximal. Then $f \notin \frak n$ but $f \in J(R \subseteq \frak n$, a contradiction.
+\end{proof}
+
+\begin{theorem}[Hilbert's Nullstellensatz, strong form]
+    Let $k$ be an algebraically closed field. For $I \subseteq k[x_1, \dots, x_n]$ an ideal. Let $Z(I) = \{(a_1, \dots, a_n) \in k^n : f(a_1, \dots, a_n) = 0 \text{ for all } f \in I\}$, called the zero set of $I$. Then the ideal of polynomials vanishing on $Z(I)$ is $\rad(I)$. Note that this can fail for non-algebraically closed fields. Indeed, take $k = \mathbb R$, $I = (x^2 + 1) \subseteq \mathbb R[x]$. Then $Z(I) = \emptyset$, so the ideal of polynomials vanishing on $Z(I)$ is $\mathbb R[x]$, but as $x^2 + 1$ is irreducible, $(x^2 + 1)$ is maximal, hence prime, hence radical and not equal to $\mathbb R[x]$.
+\end{theorem}
+\begin{proof}
+    Let $J$ be the ideal of polynomials vanishing on $Z(I)$. Certainly, $I \subseteq J$. Furthermore, if $f^r \in J$ then $f \in J$ as we are in a domain. Hence, $J$ is radical and $\rad(I) \subseteq J$. Let $R = k[x_1, \dots, x_n] / \rad(I)$. This is an algebra of finite type over $k$, so $J(R) = \nil(R) = 0$. Let $f \notin \rad(I)$. Then $f$ is nonzero in $R/\rad(I)$, so as $J(R) = 0$ there is some maximal ideal $\frak m \subseteq R$ that does not contain $f$. This pulls back to a maximal ideal in $k[x_1, \dots, x_n]$, which is of the form $(x_1 - a_1, \dots, x_n - a_n)$ by the Nullstellensatz. Furthermore, this maximal ideal contains $\rad(I)$. Let $a = (a_1, \dots, a_n)$. As $f \notin \rad(I)$, $f(a) \neq 0$. Furthermore, as $\rad(I) \subseteq \frak m$, $a \in Z(\rad(I)) = Z(I)$. Thus, $f \notin J$ as desired.
+\end{proof}

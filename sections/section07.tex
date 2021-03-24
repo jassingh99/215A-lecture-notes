@@ -1,0 +1,33 @@
+
+As discussed above, it is not true that tensoring preserves all exact sequences. We want to consider when it is.
+
+\begin{definition}
+    An $R$-module $M$ is called flat if for every exact sequence $A \longrightarrow B \longrightarrow C$, the sequence $A \otimes M \longrightarrow B \otimes M \longrightarrow C \otimes M$ is exact.
+\end{definition}
+
+For example, the $\mathbb Z$-module $\mathbb Z/(2)$ is not flat, as the sequence
+\begin{tikzcd}
+    0 \arrow[r] &\mathbb Z \arrow[r, "\cdot 2"] &\mathbb Z
+\end{tikzcd}
+is not exact when tensored with $\mathbb Z/(2)$.
+
+\begin{remark}
+    Any free module in flat. Indeed, 
+    \begin{align*}
+        (A \longrightarrow B \longrightarrow C) \otimes R^{\oplus I} &= A^{\oplus I} \longrightarrow B^{\oplus I} \longrightarrow C^{\oplus I}\\
+        &= (A \longrightarrow B \longrightarrow C)^{\oplus I}
+    \end{align*}
+    which is exact. More generally, one can show that any direct summand of a flat module is flat, so projective modules are flat. However, the converse is not true. Indeed, $\mathbb Q$ is not $\mathbb Z$-projective but is flat.
+\end{remark}
+
+\begin{lemma}
+    Let $M$ be an $R$-module. The following are equivalent.
+    \begin{enumerate}
+        \item $M$ is flat.
+        \item Tensoring by $M$ preserves injections.
+        \item For any ideal $I$, tensoring by $M$ preserves injectivity of the inclusion of $I$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    1) $\implies$ 2) $\implies$ 3) is immediate. 3) $\implies$ 1) is not, and we will delay this until we have the Tor functor.
+\end{proof}

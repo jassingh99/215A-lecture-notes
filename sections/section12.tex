@@ -1,0 +1,128 @@
+
+\begin{definition}
+    A chain complex of $R$-modules is a sequence (indexed by $\mathbb Z$) of $R$-modules and $R$-linear maps between them
+    \[
+    \begin{tikzcd}
+        \dots \arrow[r] &M_i \arrow[r, "d_i"] &M_{i-1} \arrow[r, "d_{i-1}"] &M_{i-2} \arrow[r] & \dots
+    \end{tikzcd}
+    \]
+    such that $d^2 = 0$, i.e. $d_{i-1} \circ d_i = 0$ for all $i \in \mathbb Z$. Equivalently, that for all $i \in \mathbb Z$, that $\im(d_{i+1}) \subseteq \ker(d_i)$. We write this sequence as $M_*$.
+\end{definition}
+
+\begin{definition}
+    For a chain complex $M_*$, we define the $i^{th}$ homology $H_i(M_*) = \ker(d_i) / \im(d_{i+1})$. If each homology is $0$, we say that the sequence is exact.
+\end{definition}
+
+We would like to interpret the homology as a functor from the category of chain complexes to the category of $R$-modules. To do this, we must first define the morphisms in this category.
+
+\begin{definition}
+    Let $M_*, N_*$ be chain complexes. A chain map $f \colon M_* \longrightarrow N_*$ is a sequence of $R$-linear maps $f_i \colon M_i \longrightarrow N_i$ for all $i \in \mathbb Z$. such that the following diagram commutes.
+    \[
+    \begin{tikzcd}
+        \dots \arrow[r] &M_i \arrow[d, "f_i"] \arrow[r] &M_{i-1} \arrow[d, "f_{i-1}"] \arrow[r] &M_{i-2} \arrow[d, "f_{i-2}"] \arrow[r] &\dots\\
+        \dots \arrow[r] &M_i \arrow[r] &M_{i-1} \arrow[r] &M_{i-2} \arrow[r] &\dots
+    \end{tikzcd}
+    \]
+    Omitting the indices, we write this condition as $df = fd$.
+\end{definition}
+
+Indeed, for $i \in \mathbb Z$, we claim that $H_i$ is a functor. Indeed, for $f \colon M_* \longrightarrow N_*$, we seek to define $H_i(f) \colon H_i(M_*) \longrightarrow H_i(N_*)$. Write the boundary maps of $M_*$ as $d$ and the boundary maps of $N_*$ as $e$, so $ef = fd$. Indeed, we have a map
+\[
+\begin{tikzcd}
+    \ker(d_i) \arrow[r, "f_i"] &\ker(e_i) \arrow[r] &\ker(e_i)/\im(e_{i+1})
+\end{tikzcd}
+\]
+which is well defined by the condition $ef = fd$. Indeed, this also says that the map vanishes on $\im(d_{i+1})$. This therefore induces a map $H_i(f) \colon H_i(M_*) \longrightarrow H_i(N_*)$ which one can check is functorial.\\
+The category of chain complexes is actually a 2-category, so we will define the 2-morphisms.
+
+\begin{definition}
+    Let $f, g \colon M_* \longrightarrow N_*$ be chain maps. A chain homotopy $F \colon f \longrightarrow g$ is a sequence of $R$-linear maps $F_i \colon M_i \longrightarrow N_{i+1}$ satisfying $dF + Fd = g- f$. We write $f ~ g$ if there exists a homotopy $F \colon f \longrightarrow g$. One can check that this is an equivalence relation.
+\end{definition}
+One can check that homology is well defined on homotopy classes of chain maps. This means that if $f \sim g$ then $H_i(f) = H_i(g)$.
+\begin{definition}
+    A chain homotopy equivalence is a chain map $f \colon M_* \longrightarrow N_*$ such that there exists a chain map $g \colon N_* \longrightarrow M_*$ such that $fg \sim \id_{N_*}$ and $gf \sim \id_{M_*}$.
+\end{definition}
+
+Then chain homotopy equivalence induces an isomorphism on homology groups, as functors preserve isomorphism and chain homotopy equivalences are isomorphisms up to homotopy.\\
+We now define a homological notion that is essential to our future endeavors.
+
+\begin{definition}
+    Let $M$ be an $R$-module. A projective resolution is an exact sequence
+    \[
+    \begin{tikzcd}
+        \dots \arrow[r] &P_2 \arrow[r] &P_1 \arrow[r] &P_0 \arrow[r] &M \arrow[r] &0
+    \end{tikzcd}
+    \]
+    such that each $P_i$ is projective.
+\end{definition}
+
+\begin{lemma}
+    Every $R$-module has a projective resolution.
+\end{lemma}
+\begin{proof}
+    Indeed, we will show that a free resolution exists for any $R$-module $M$. We know that there exists an exact sequence
+    \[
+    \begin{tikzcd}
+        R^{\oplus I} \arrow[r] &M \arrow[r] &0
+    \end{tikzcd}
+    \]
+    Let $K$ be the kernel of this map. Then we have
+    \[
+    \begin{tikzcd}
+        &R^{\oplus I} \arrow[r] &M \arrow[r] &0\\
+        R^{\oplus J} \arrow[r] &K \arrow[u, "inc"] \arrow[r] &0
+    \end{tikzcd}
+    \]
+    with exact rows. Then the sequence
+    \[
+    \begin{tikzcd}
+        R^{\oplus J} \arrow[r] &R^{\oplus I} \arrow[r] &M \arrow[r] &0
+    \end{tikzcd}
+    \]
+    by taking the composition is exact. Repeating this process yields a free, therefore projective, resolution.
+\end{proof}
+
+\begin{lemma}
+    Any two projective resolutions are chain homotopy equivalent.
+\end{lemma}
+
+\begin{definition}
+    Let $F\colon \mathbf{R-Mod} \longrightarrow \mathbf{S-Mod}$ be an additive, right exact functor. For example, $F = - \otimes_R S$. We define the left derived functors of $F$ to be $F_i(M) = H_i(F(P_*))$ for some projective resolution $P_*$ of $M$. This is well defined up to isomorphism by the above lemma.
+\end{definition}
+
+\begin{example}
+    The essential example of a derived functor is Tor. We define $\tor_i^R(-, N)$ to be the left derived functors of $- \otimes_R N$.
+\end{example}
+
+This is used to measure how much the tensor product fails to be exact. Recall that it is right exact, but not left exact in general. Indeed, using the snake lema one can show that any short exact sequence $0 \longrightarrow M_1 \longrightarrow M_2 \longrightarrow M_3 \longrightarrow 0$ induces a long exact sequence
+\[
+\begin{tikzcd}
+    \dots \arrow[r] &\tor_2^R(M_3, N) \arrow[r] &\tor_1^R(M_1, N) \arrow[r] &\tor_1^R(M_2, N) \arrow[r] &\tor_1^R(M_3, N) \\
+    \arrow[r] &M_1 \otimes_R N \arrow[r] &M_2 \otimes_R N \arrow[r] &M_3 \otimes_R N \arrow[r] &0
+\end{tikzcd}
+\]
+
+We can dually define the Ext functor by instead applying $\Hom$ to a projective resolution and taking the homology. These are not left derived functors due to the contravariance of Hom.
+
+One can then use this construction to show that $M$ is flat if and only of $\tor_1^R(M, N) = 0$ for all $R$-modules $N$. We will use this to prove the ideal characterization of flatness mentioned previously.
+
+\begin{lemma}
+    An $R$-module $M$ is flat if for all ideals $I$, tensoring with $M$ preserves the injection $I \longrightarrow R$.
+\end{lemma}
+\begin{proof}
+    Take an ideal $I$ and consider the exact sequence $0 \longrightarrow I \longrightarrow R \longrightarrow R/I \longrightarrow 0$. Tor induces an exact sequence.
+    \[
+    \begin{tikzcd}
+        \tor_1^R(M, R) \arrow[r] &\tor_1^R(M, R/I) \arrow[r] &M \otimes_R I \arrow[r] &M \otimes_R R
+    \end{tikzcd}
+    \]
+    As $R$ is flat as an $R$-module, this becomes
+    \[
+    \begin{tikzcd}
+        0 \arrow[r] &\tor_1^R(M, R/I) \arrow[r] &M \otimes_R I \arrow[r] &M \otimes_R R
+    \end{tikzcd}
+    \]
+    The rightmost arrow is injective by assumption, so $\tor_1^R(M, R/I) = 0$
+    We want to prove that $\tor_1^R(M, N) = 0$ for all $R$-modules $N$. We have done the case of $N = R/I$. We now consider the case when $N$ is finitely generated. Let $N = \sum_{i=1}^n Rx_i$. Let $N_k = \sum_{i=1}^k Rx_i$. Then each $N_k / N_{k-1}$ is cyclic, and is therefore isomorphic to some $R/I$, specifically we may take I to be the annihilator of the single generator of the cyclic module. Thus, by the previous work,  $\tor_1^R(M, N_k/N_{k-1}) = 0$ for all $k$. Then by induction and the long exact sequence of Tor, we get that  $\tor_1^R(M, N) = 0$.\\
+    Now, let $N$ be any $R$-module. Then $N$ is the direct limit of its finitely generated submodules. We know that the tensor product is cocontinuous and that direct limits factor through homology. Thus,  $\tor_1^R(M, R/I) = 0$, so $M$ is flat.
+\end{proof}

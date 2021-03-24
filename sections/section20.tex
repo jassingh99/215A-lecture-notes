@@ -1,0 +1,110 @@
+
+To try and define a regular local ring, we must first prove the following lemma.
+
+\begin{lemma}
+    Let $(R, \frak m)$ be a noetherian local ring. Let $k \ R/\frak m$ its residue field. Then $\dim(R) \leq \dim_k(\frak m / \frak m^2)$.
+\end{lemma}
+\begin{proof}
+    As $R$ is noetherian, $\frak m$ is finitely generated, so $\dim_k(\frak m / \frak m^2) < \infty$. Indeed, let $e_1, \dots, e_n$ be a $k$-basis for $\frak m/\frak m^2$. We lift these to $\frak m$ but call them the same thing. By Nakayama's lemma, $\frak m = (e_1), \dots, e_n)$. By Krull's principal ideal theorem, $\codim(\frak m) \leq n$. Thus, $\dim(R) \leq n = \dim_k(\frak m/\frak m^2)$.
+\end{proof}
+
+\begin{definition}
+    A noetherian local ring $R$ is called regular if $\dim(R) = \dim_k(\frak m/\frak m^2)$ for $k$ the residue field of $R$.
+\end{definition}
+
+\begin{example}
+    A regular local ring $R$ of dimension 0 has $\frak m = \frak m^2$, so by Nakayama's lemma, $\frak m = 0$. Then $R$ is a field. For example, $k[x]/(x^n)$ has dimension 0 but is not regular for $n \geq 2$.
+\end{example}
+
+It is a fact that regular local rings are domains. Given this, regular local rings of dimension 1 are precisely discrete valuation rings.
+
+\begin{example}
+    $R = k[x_1, \dots, x_n]_{(x_1, \dots, x_n)}$ is a regular local ring. Indeed, its maximal ideal $\frak m = (x_1, \dots, x_n)$. Then $\frak m^2 = (x_1^2, x_1 x_2, \dots, x_n^2)$ the ideal of homogeneous polynomials of total degree at least 2. Then $\frak m / \frak m^2$ has $k$ dimension $n$, and $k$ is the residue field of $R$. Furthermore, we have the chain $0 \subsetneq (x_1) \subsetneq \dots \subsetneq (x_1, \dots, x_n)$, so $\dim(R) \geq n$. Furthermore, as $\dim(k[x_1, \dots, x_n]) = n$, by correspondence we have $\dim(R) \geq n$. Then $\dim(R) = n = \dim_k(\frak m/\frak m^2)$.
+\end{example}
+
+\begin{lemma}
+    Let $R$ be a ring, with $a \geq 0$ and $\frak m$ a maximal ideal. Then $R/\frak m^a \cong R_\frak m/(\frak m R_\frak m)^a$.
+\end{lemma}
+\begin{proof}
+    Note that $R/\frak m^a$ is local with maximal ideal $\frak m$. Then localizing this at $\frak m$ does nothing. Consider the exact sequence
+    \[
+    \begin{tikzcd}
+        0 \arrow[r] & \frak m^a \arrow[r] & R \arrow[r] & R/\frak m^a \arrow[r] & 0\\
+    \end{tikzcd}
+    \]
+    
+    Localizing this at $\frak m$ yields
+    
+    \[
+    \begin{tikzcd}
+        0 \arrow[r] & \frak m^a \otimes_R R_\frak m \arrow[r] & R_\frak m \arrow[r] & (R/\frak m^a)_\frak m \arrow[r] & 0\\
+    \end{tikzcd}
+    \]
+    
+    which becomes
+    
+    \[
+    \begin{tikzcd}
+        0 \arrow[r] & \frak m^a R_\frak m \arrow[r] & R_\frak m \arrow[r] & R/\frak m^a \arrow[r] & 0\\
+    \end{tikzcd}
+    \]
+    as discussed above. Then by exactness we have $R/\frak m^a \cong R_\frak m/\frak m^a R_\frak m$ as desired.
+\end{proof}
+
+We now proceed with a discussion of the subvarieties of $\mathbb A_\mathbb C^2$. Let $Y$ be such a subvariety. If its dimension is 2, then it is of course the whole affine plane. If it is dimension 0, it is a maximal ideal, hence a point by the Nullstellensatz. Now, if $Y$ has dimension 1, its corresponding prime ideal has codimension 1, and is therefore principal. as $\mathbb C[x, y]$ is a UFD. Thus, $Y$ is defined by a single equation defined by an irreducible polynomial. This is not so easy in higher dimensions. Indeed, in $\mathbb A_\mathbb C^3$, there are dimension 1 varieties which cannot be defined by a single equation.
+
+\begin{lemma}[Prime avoidance lemma]
+    Let $n \geq 1$, $I_1, \dots, I_n, J \subseteq R$ ideals with all but (at most) 1 of the $I_j$ are prime. If $J \subseteq \bigcup I_j$, then $J \subseteq I_a$ some $a$.
+\end{lemma}
+\begin{proof}
+    We proceed by induction. The case $n = 1$ is immediate. Suppose without loss of generality that $I_n$ is prime. We may assume that $J$ is not contained in any union of $n-1$ of the $I_j$, as otherwise by induction we are done. Then let $x_a \in J - \bigcup_{b \neq a} I_b$. Certainly, $x_a \in I_a$. Consider $y = x_1 \dots x_{n - 1} + x_n \in J$. Then $y \in I_a$ for some $a$. If $1 \leq a \leq n - 1$, then $x_1 \dots x_{n-1} \in I_a$ However, $x_n \notin I_a$, a contradiction. Thus, we assume $a = n$. By primality, $x_1 \dots x_{n-1} \notin I_n$, yet $y, x_n \in I_n$ a contradiction.
+\end{proof}
+
+\begin{lemma}
+    Let $(R, \frak m)$ be a noetherian local ring. Then $\dim(R)$ is the smallest $r$ such that there exist $f_1, \dots, f_r \in \frak m$ such that $\frak m = \rad(f_1, \dots, f_r)$.
+\end{lemma}
+\begin{proof}
+    By Krull's principal ideal theorem, if $\rad(f_1, \dots, f_r) = \frak m$ then $\dim(R) = \codim(\frak m) \leq r$ as $R$ is local. On the other hand, it suffices to find $r = \dim(R)$ many elements of $\frak m$ such that $\rad(f_1, \dots, f_r) = \frak m$. By induction, it suffices to show that there exists an $f \in \frak m$ with $\dim(R/(f)) < \dim(R)$. We claim that any $f$ not in any minimal prime ideal satisfies this. Indeed, let $\frak p_0 \subsetneq \dots \subsetneq \frak p_r$ be a maximal chain. Then $\frak p_0$ is a minimal prime ideal. A chain in $R/(f)$ corresponds to a chain in $R$ whose bottom element contains $f$. Thus, such a chain cannot be maximal as $f$ is not in any minimal prime. Thus, it suffices to find such an $f$. As $\dim(R) > 0$, $\frak m$ is not a minimal prime ideal. By prime avoidance, as $\frak m$ is not contained in any minimal prime, $\frak m$ is not contained in any finite union of minimal primes, so such an $f$ exists as $R$ has only finitely many minimal primes.
+\end{proof}
+
+\begin{examples}
+\begin{enumerate}
+    \item Field = RLR + dimension 0
+    \item Discrete valuation rings are RLRs
+    \item $\mathbb Z_p = \varprojlim \mathbb Z/(p^n)$
+\end{enumerate}
+\end{examples}
+
+\begin{definition}
+    A system of parameters in a noetherian local ring $(R, \frak m)$ is a sequence of elements $f_1, \dots, f_r \in \frak m$ with $r = \dim(R)$ and $\rad(f_1, \dots, f_r) = \frak m$. We have proven before that these exist.
+\end{definition}
+
+\begin{lemma}
+    Let $(R, \frak m)$ be a noetherian local ring. For any $f \in \frak m$, $\dim(R/(f)) \geq \dim(R) - 1$. For $f$ not a zero divisor, equality is attained.
+\end{lemma}
+\begin{proof}
+    Let $r = \dim(R)$, $s = \dim(R/(f))$. Take a system of parameters $g_1, \dots, g_s \in R/(f)$. Then $\frak m$ is nilpotent in $R/(f, g_1, \dots, g_s)$, so $\rad(f, g_1, \dots, g_s) = \frak m$, so $s + 1 \geq \dim(R)$. Now, suppose $f$ is not a zero divisor. Then we have the desired equality if $f$ is not contained in any minimal prime ideal of $R$. Indeed, let $\frak p_1, \dots, \frak p_n$ be the minimal primes of $R$. Suppose $f \in \frak p_1$. Then for $j \geq 2$ there exists $x_j \in \frak p_j - \frak p_1$. Then by primality, $g = x_2 \dots x_n \in \frak p_2 \cap \dots \cap \frak p_n - \frak p_1$. Then $fg \neq 0$ as $f$ is not a zero divisor, so it must be in $\frak p_1 \cap \dots \cap \frak p_n = \nil(R)$. Then there is some $m$ with $f^m g^m = 0$, but as $f$ is not a zero divisor we have $g^m = 0$ so $g \in \nil(R)$, but $g \notin \frak p_1$, a contradiction.
+\end{proof}
+
+\begin{theorem}
+    A regular local ring is a domain.
+\end{theorem}
+\begin{proof}
+    Noetherian local rings are finite dimensional, so we proceed by induction on the dimension. Indeed,as discussed above, 0 dimensional regular local rings are fields, hence domains. Suppose now that $\dim(R) = r > 0$. Then $\dim_k(\frak m/\frak m^2) = r > 0$, so $\frak m \nsubseteq \frak m^2$. $R$ has finitely many minimal prime ideals, so by prime avoidance, $\frak m$ is not contained in $\frak m^2$ union the minimal prime ideals, as if so it wuld be contained in some monimal prime, hence equal some minimal prime. That would imply, as $R$ is local, that this is the only prime ideal. Hence, all primes would be maximal so $\dim(R) = 0$, a contradiction. Thus, we have some $f \in \frak m$ not in $\frak m^2$ union the minimal primes. By the proof of the previous lemma, $\dim(R/(f)) = r - 1$.\\
+    We seek to show that $S = R/(f)$ is a regular local ring. It's certainly noetherian and local, with maximal ideal $\frak m_S = \frak mS$. Then the residue field of $S$ is $(R/(f))/(\frak m/(f)) = k$. It therefore suffices to show that $\dim_k(\frak m_S/\frak m_S^2)$. Indeed, this is true as $\frak m_S/\frak m_S^2 = (\frak m/\frak m^2)/(f)$ and $f$ is nonzero in $\frak m/\frak m^2$. Then $S$ is a regular local ring, so by induction it's a domain. Then $(f)$ is a prime ideal. Then there exists some $\frak p \subseteq (f)$ a minimal prime ideal. Then any $y \in \frak p$ equals some $zf$, $z \in R$. By primality, $z$ or $f$ must be in $\frak p$. However, by definition, $f$ is not contained in any minimal prime ideal, so in particular $f \notin \frak p$. Then $z \in \frak p$ so $\frak p =\frak p f$. Furthermore, as $f$ is not contained in any minimal prime, it is not properly contained in any prime. Thus, it must equal $\frak m$, so $\frak p = \frak p \frak m$, so by Nakayama's lemma $\frak p = 0$ so $R$ is a domain.
+\end{proof}
+
+\begin{definition}
+    A regular sequence in $R$ is a sequence $f_1, \dots, f_n \in R$ such that $f_1$ is not a zero divisor in $R$, $f_2$ is not a zero divisor in $R/(f_1)$, $f_3$ is not a zero divisor in $R/(f_1, f_2)$, etc.
+\end{definition}
+
+\begin{theorem}
+    Let $(R, \frak m)$ be a noetherian local ring. Then $R$ is regular if and only if $\frak m$ is generated by a regular sequence.
+\end{theorem}
+\begin{remark}
+    Using some homological algebra, this leads to the characterization that $R$ is regular if and only if it has finite global dimension, i.e. every module over $R$ has a finite projective resolution. This leads to (Auslander-Buchsbaum, Serre, 1956), which states that the localization of a regular ring at a prime ideal is regular. This also yields that regular local rings are UFDs.
+\end{remark}
+\begin{proof}
+     Let $(R, \frak m)$ be a regular local ring of dimension $n$. Let $f_1, \dots, f_n \in \frak m$ map to a $k$ basis of $\frak m/\frak m^2$. By Nakayama's lemma, they generate $\frak m$. We claim that this is a regular sequence. Indeed, as proven before $R$ is a domain so as no $f_i$ is 0 due to linear independence in $\frak m/\frak m^2$, they are not zero divisors. By an earlier lemma, $S = R/(f_1)$ has dimension $n - 1$. Furthermore, $\frak m_S/\frak m_S^2 = (\frak m/\frak m^2)/kf_1$, which has $k$ dimension $n - 1$, so $S$ is a regular local ring. Then $S$ is a domain. By linear independence, $f_2$ is nonzero in $S$, hence not a zero divisor.\\
+     Conversely, suppose that $\frak m$ is generated by a regular sequence $f_1, \dots, f_n$. We have that $\dim(R/(f_1)) = \dim(R) - 1$. Also, $\dim(R/(f_1, f_2)) = \dim\left(\frac{R/(f_1)}{(f_2)}\right) = \dim(R/(f_1)) - 1 = \dim(R) - 2$. Hence, $0 = \dim(R/\frak m) = \dim(R/(f_1, \dots, f_n)) = \dim(R) - n$, so we have $\dim(R) = n$. We then want to show that $\dim_k(\frak m/\frak m^2) = n$. By Nakayama's lemma it suffices to show that $(f_1, \dots, f_n)$ is a minimal set of generators for $\frak m$. Indeed, if $(g_1, \dots g_{n-1}) = \frak m$ then by Krull's principal ideal theorem, we have $\codim(\frak m) \leq n - 1$, but $\codim(\frak m) = \dim(R) = n$, a contradiction.
+\end{proof}

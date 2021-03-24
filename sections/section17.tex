@@ -1,0 +1,80 @@
+
+\begin{definition}
+    Let $K$ be a field. A discrete valuation on $K$ is a surjection $v \colon K \longrightarrow \mathbb Z \cup \{\infty\}$ satisfying the following:
+    \begin{enumerate}
+        \item $v(x) = \infty$ if and only if $x = 0$
+        \item $v(xy) = v(x) + v(y)$
+        \item $v(x + y) \geq min\{v(x), v(y)\}$
+    \end{enumerate}
+    We call $\{x \in K : v(x) \geq 0\}$ the discrete valuation ring (DVR) associated to $(K, v)$.
+\end{definition}
+
+The idea is that $v$ measure the degree of vanishing of an element of $K$. We think of an element of $K$ as small if its valuation is large.
+\begin{enumerate}
+
+\item $K = k(x)$. Any nonzero element of $K$ can be written uniquely as $x^m \frac{f}{g}$ with $f(0) \neq 0 \neq g(0)$. We define the valuation of this to be $m$, and the valuation of $0$ to be $0$. Indeed, this measures the order vanishing of a rational function at $0$.
+\item $K = \mathbb Q$, $p \in \mathbb Z$ a prime. As $\mathbb Z$ is a UFD, any nonzero element of $\mathbb Z$ can be written uniqely as $p^a m$ with $p \nmid m$. Then any nonzero element of $\mathbb Q$ can be written uniquely as $p^m \frac{a}{b}$ with $p \nmid a$. We define the valuation $v_p$ of this to be $m$, and the valuation of $0$ to be $0$. This measures the ``p-ness" of an element. This can be easily generalized to any irreducible element of a PID.
+
+\end{enumerate}
+
+\begin{lemma}
+    The associated DVR of a valuation $(K, v)$ is a local ring with maximal ideal $\frak m = \{x \in K : x > 0\}$
+\end{lemma}
+\begin{proof}
+    One can easily check that the associated DVR $R$ is a subring of $K$. We show that $\frak m = R - R^\times$. Indeed, $v(1) = v(1 \cdot 1) = v(1) + v(1)$, so $v(1) = 0$, Furthermore, if $xy = 1$ in $R$ then $0 = v(1) = v(xy) = v(x) + v(y)$, so as $v(x), v(y) \geq 0$, $v(x) = v(y) = 0$. Thus, $\frak m \subseteq R - R^\times$. Conversely, let $v(x) = 0$. Then as $x^{-1} \in K$ exists, we have $v(x^{-1}) = -v(x)$ as it is a group homomorphism of $K^\times$. Then $v(x) = v(x^{-1}) = 0$, so $x^{-1} \in R$. Thus, $x \in R^\times$, so $\frak m = R - R^\times$ as desired.
+\end{proof}
+
+Furthermore, we can describe all the ideals of the associated DVR of a discrete valuation $R$. Indeed, for $I \neq 0$, let $n$ be the smallest valuation of elements in $I$. Then by surjectivity of the valuation, there exists an element $x \in R$ with valuation $n$. Furthermore, any $y \in I$ satisfies $v(y) \geq n$. Thus, $v\left(\frac{y}{x}\right) = v(y) - v(x) \geq 0$, so $\frac{y}{x} \in R$. Then $y \in (x)$, so $I = (x)$. In particular, all DVRs are PIDs. We can in fact go further. It's clear now that the unique maximal ideal $\frak m$ is equal to any $(x)$ with $v(x) = 1$. We claim that all nonzero ideals of $R$ are of the form $(x^a)$. Indeed, one can show that $v(x) = v(y)$ if and only if $x$ and $y$ are associate. Then for $0 \neq I = (y)$, we have $y \approx x^n$, so $I = (x^n) = \frak m^n$. This furthermore implies that $\dim(R) = 1$.
+
+\begin{remark}
+    If a ring $R$ can be viewed as the associated DVR, there is a unique way to do so. Indeed, $R$ must be a domain so take $K = \Frac(R)$. Then for $x \in R$, $v(x)$ is forced to be the largest $a \in \mathbb N$ such that $x \in \mathfrak m^a$. This says that being a DVR is a property of the ring itself.
+\end{remark}
+
+\begin{theorem}
+    Let $R$ be a noetherian local domain of dimension 1. Let $\frak m$ be its maximal ideal, $k = R/\frak m$ its residue field. The following are equivalent.
+    \begin{enumerate}
+        \item $R$ is  DVR
+        \item $R$ is normal
+        \item $\frak m$ is principal
+        \item $\dim_k(\frak m / \frak m^2) = 1$
+        \item Every nonzero ideal in $R$ is a power of $\frak m$
+        \item There exists an $x \in R$ such that every nonzero ideal of $R$ equals some $(x^a)$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    We first prove some general properties of $R$.\\
+    Firstly, the spectrum of $R$ is a closed point and its generic point as it has a unique maximal ideal and it having dimension 1 says that prime ideals are 0 or maximal.\\
+    Furthermore, for any nonzero proper ideal $I$, $\rad(I) = \frak m$. Then as $R$ is noetherian, there exists an $n$ such that $\frak m^n \subseteq I \subseteq \frak m$.\\
+    $1) \implies 2)$. DVRs are PIDs, hence UFDs, hence normal.\\
+    $2) \implies 3)$. Let $a \neq 0$ in $\frak m$. Then as said above, $\frak m^n \subseteq (a) \subseteq \frak m$. let $n$ be minimal. Then $\frak m^{n-1} \subsetneq (a)$. let $b \in \frak m^{n-1} - (a)$. Then $x = \frac{a}{b} \in K = \Frac(R)$. Then $x^{-1} \notin R$ as if it were then $\frac{b}{a} \in R$, which would imply that $b \in (a)$, a contradiction. Thus, as $R$ is normal, $x^{-1}$ is not integral over $R$. Furthermore, if $x^{-1} \frak m \subseteq \frak m$ then we would have $x^{-a} \frak m \subseteq \frak m$ for all $a \geq 1$. Then $\frak m$ is a faithful $R[x^{-1}]$-module that is finitely generated as an $R$-module, as $R$ is noetherian. Thus, by a previous characterization of integrability, this says that $x^{-1}$ is integral, a contradiction. Hence, $x^{-1} \frak m \nsubseteq \frak m$. However, $x^{-1} \frak m \subseteq R$ as $b \frak m \subseteq \frak m^n \subseteq (a)$. Thus, $x^{-1} \frak m$ contains a unit of $R$, as $\frak m = R - R^\times$. Thus, $x^{-1} \frak m = R$ so $\frak m = (x)$.\\
+    $3) \implies 4)$. Let $\frak m = (x)$. Then $x$ spans $\frak m/\frak m^2$ as a $k$ vector space, so its $k$ dimension is at most 1. If $\frak m/\frak m^2 = 0$ then by Nakayama's lemma, we would have $\frak m = 0$. However, $\dim(R) = 1$, so $R$ is not a field, so this is impossible.\\
+    $4) \implies 5)$. Let $0 \neq \subsetneq R$ an ideal. We have that $\frak m^n \subseteq I$ for some $n$. Let $r$ be minimal such that I contains an element $a$ of $\frak m^r - \frak m^{r-1}$. Clearly, $r \leq n$. Furthermore, as $\dim_k(\frak m/\frak m^2) = 1$, $\dim_k(\frak m^r/\frak m^{r+1}) = 1$. Indeed, $\{a\}$ is a basis for this, so $(a) = \frak m^r$ by Nakayama's lemma. Then $I = \frak m^r$ by minimality.\\
+    $5) \implies 6)$. Clear as we can repeat the argument in $4) \implies 5)$ to show that $\frak m$ is principal.\\
+    $6) \implies 1)$. For $x \in R$ define
+    \[ v(x) = 
+    \begin{cases}
+        r & x \in \frak m^r - \frak m^{r+1}\\
+        0 & x = 0
+   \end{cases}
+    \]
+    and check that this works.
+\end{proof}
+
+\begin{definition}
+    Let $\frak p \subseteq R$ be a prime ideal. We define its codimension $\codim(\frak p)$ to be the supremum of the lengths of strictly increasing chains of prime ideals contained in $\frak p$.
+\end{definition}
+
+\begin{lemma}
+    $\codim(R_{\frak p}) = \codim(\frak p)$
+\end{lemma}
+\begin{proof}
+    Correspondence.
+\end{proof}
+
+\begin{examples}
+\begin{enumerate}
+    \item Let $R$ be a domain. Then $\codim(0) = \dim(R_{(0)}) = \dim(\Frac(R)) = 0$.
+    \item Let $R$ be a noetherian normal domain, $\frak p$ be a codimension 1 prime ideal. Then $R_{\frak p}$ has dimension 1 and is therefore a noetherian normal local domain of dimension 1, which is a DVR by the theorem.
+    \item Let $R$ be a UFD, $f \in R$ irreducible. Then $(f)$ has codimension 1. Indeed, we have $0 \subsetneq (f)$ so $\codim((f)) \geq 1$. Suppose we have $0 \subsetneq \frak q \subsetneq (f)$. Then let $g \in \frak q - 0$. We then have $g = fh$. As $f \notin \frak q$, we have $h \in q$. Then $\frak q = f \frak q$, so $\frak q = f \frak q = f^2 \frak q = \dots$. Then as $g \in \frak q$, $f^r \mid g$ for all $r \geq 0$, which is impossible in a UFD unless $g = 0$.
+\end{enumerate}
+\end{examples}

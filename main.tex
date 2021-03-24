@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,hyperref,yfonts,tikz-cd, subfiles}
+\usetikzlibrary{positioning}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{definition}
+\newtheorem*{examples}{Examples}
+
+\theoremstyle{definition}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{definition}
+\newtheorem*{remarks}{Remarks}
+
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\nil}{nil}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\cok}{cok}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\tor}{Tor}
+\DeclareMathOperator{\ext}{Ext}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\trdeg}{tr deg}
+
+\begin{document}
+\date{}
+
+ 
+\title{Math 215A Lecture Notes\\
+Prof. Burt Totaro\\
+Fall 2018}
+\maketitle
+
+\tableofcontents{}
+
+\newpage
+
+\textbf{Convention:} All rings are commutative.
+
+\section{Basic Results}
+\subfile{sections/section01}
+
+\section{The Prime Spectrum}
+\subfile{sections/section02}
+
+\section{Irreducible Closed Subsets of $\spec A$}
+\subfile{sections/section03}
+
+\section{Modules}
+\subfile{sections/section04}
+
+\section{Tensor Products}
+\subfile{sections/section05}
+
+\section{Algebras and Tensor Products}
+\subfile{sections/section06}
+
+\section{Exactness of Tensor Products}
+\subfile{sections/section07}
+    
+\section{Localization and Local Rings}
+\subfile{sections/section08}
+
+\section{Local Properties}
+\subfile{sections/section09}
+
+\section{Noetherian Rings}
+\subfile{sections/section10}
+
+\section{Decomposition of $\spec R$ into Irreducible Closed Subsets}
+\subfile{sections/section11}
+
+\section{Homological Algebra}
+\subfile{sections/section12}
+
+\section{Integral Extensions}
+\subfile{sections/section13}
+
+\section{Behavior of Prime Ideals under Integral Extensions}
+\subfile{sections/section14}
+
+\section{The Noether Normalization Lemma and the Nullstellens\"atze}
+\subfile{sections/section15}
+
+\section{Artinian Rings}
+\subfile{sections/section16}
+
+\section{Discrete Valuation Rings}
+\subfile{sections/section17}
+
+\section{Dimension of a Polynomial Ring}
+\subfile{sections/section18}
+
+\section{More Dimension Theory}
+\subfile{sections/section19}
+
+\section{Regular Local Rings}
+\subfile{sections/section20}
+
+\end{document}

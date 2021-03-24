@@ -1,0 +1,29 @@
+
+\begin{lemma}
+    Let $ A $ be a domain. Then the closure of $\{0\}$ in $\spec A$ is $\spec A$, i.e. $\{0\}$ is dense in $\spec A$. We call this the generic point of $\spec A$.
+\end{lemma}
+\begin{proof}
+    Let $I$ be an ideal such that $\{0\} \subseteq V(I)$, i.e. $0 \in V(I)$. Then $I \subseteq 0$, so $I = 0$. Then $V(I) = \spec A$. Thus, $\overline{\{0\}} = \spec A$.
+\end{proof}
+
+\begin{definition}
+    A nonempty topological space $X$ is called irreducible if it cannot be written as the union of two closed subsets that are not the whole of $X$.
+\end{definition}
+
+This is a very strong notion. Indeed, a space being irreducible certainly implies that it is connected. However, the converse it not true. Indeed, consider $\mathbb R = (-\infty, 0] \cup [0, \infty)$.
+
+\begin{lemma}
+    A closed subset of $\spec A$ is irreducible if and only if it is the closure of a point. Then there are one to one correspondences between primes in $A$, points in $\spec A$, and irreducible closed subsets of $\spec A$.
+\end{lemma}
+\begin{proof}
+    Let $\frak p \in \spec A$. Let $S = \overline{\{\frak p\}}$. Certainly, $S$ is nonempty. Now, let $S = T_1 \cup T_2$ be closed subsets. Then $\frak p \in T_1$ or $\frak p \in T_2$. Without loss of generality, say $\frak p \in T_1$. Then $S = T_1$ so $S$ is irreducible. Note that this proof works for any topological space, i.e. the closure of any point is irreducible.\\
+    Conversely, let $S$ be an irreducible closed subset of $\spec A$. Then $S = V(I)$ for some ideal $I$. Without loss of generality, $I$ can be assumed to be radical. We claim that it is prime. Then as the closure of a prime ideal $\frak p$ is $V(\frak p)$, we will be done. Indeed, $I \neq A$ as $S$ is irreducible therefore nonempty. Now, let $xy \in I$. Suppose neither $x$ nor $y$ is in I. Then let $T_1 = V(I + (x)), T_2 = V(I + (y))$. Then $T_i \subsetneq S$, $i = 1, 2$ as $\rad(I + (x)) \neq I = \rad(I)$. We claim then that $T_1 \cup T_2 = S$. Indeed, 
+    \begin{align*}
+    T_1 \cup T_2 &= V(I + (x)) \cup V(I + (y))\\
+                 &= V((I + (x))(I + (y)))\\
+                 &= V(I + (xy))\\
+                 &= V(I)\\
+                 &= S
+    \end{align*}
+    which contradicts the irreducibility of S.
+\end{proof}

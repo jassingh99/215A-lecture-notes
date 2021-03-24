@@ -1,0 +1,127 @@
+
+Note that the Hom sets in $\textbf{Ring}$ are just sets. However, in $\textbf{R-Mod}$, they are themselves $R$-modules. The idea is to ``linearize" ring theory, in the way that vector bundles linearize topology or representations linearize group theory.
+
+\begin{remark}
+    An $R$-action on an abelian group $M$ is equivalent to a map $R \longrightarrow \text{End}_{\textbf{Ab}}(M)$, which is a noncommutative ring in general.
+\end{remark}
+
+\begin{definition}
+    Let $M$ be an $R$-module. We define the annihilator \[\ann_R(M) = \{a \in R : am = 0 \,\, \forall m\in M\}\] which is easily checked to be an ideal.
+\end{definition}
+
+\begin{definition}
+    Let $\{M_i\}_{i \in I}$ be a set of $R$-modules. We define
+    \[\bigoplus_{i \in I} M_i = \{(m_i)_{i \in I} \in \prod_{i \in I} M_i : m_i = 0 \text{ for all but finitely many } i\}\]
+    endowed with pointwise $R$-module operations. As a special case we define
+    \[R^{\oplus I} = \bigoplus_{i \in I} R\]
+    which is called the free $R$-module on $I$. Indeed, this is free in the categorical sense, i.e. there is a natural bijection 
+    \[\{f \colon I \longrightarrow\ M\} \longleftrightarrow \{R \text{-linear maps } R^{\oplus I} \longrightarrow M\}\]
+    This means that it satisfies the following universal property:\\
+    Given any set map $I \longrightarrow M$, we have
+    \[
+    \begin{tikzcd}
+        I \arrow[r] \arrow[dr]
+        & R^{\oplus I} \arrow[d, dashrightarrow, "\exists \text{!}"]\\
+        &M
+    \end{tikzcd}
+    \]
+    with the map $I \longrightarrow R^{\oplus I}$ defined via $i \mapsto e_i$ the $i^{th}$ basis vector of $\prod_{i \in I} R$, and the induced map $R$-linear.
+\end{definition}
+
+This is an important notion because all modules are quotients of free modules. Indeed, for an $R$-module $M$, there is a surjection $R^{\oplus M} \longrightarrow M$ which lifts the identity on $M$. We write this as an exact sequence
+\[
+\begin{tikzcd}
+    R^{\oplus I} \arrow[r] &M \arrow[r] &0
+\end{tikzcd}
+\]
+This mimics the case in group theory, where all groups are quotients of free groups. Indeed, we also have the notion of the presentation of a module.
+
+\begin{definition}
+    A presentation of an $R$-module $M$ is an exact sequence
+    \[
+    \begin{tikzcd}
+        R^{\oplus J} \arrow[r] &R^{\oplus I} \arrow[r] &M \arrow[r] &0
+    \end{tikzcd}
+    \]
+    which says that $M \cong \cok(R^{\oplus J} \longrightarrow R^{\oplus I})$. Then $M$ is determined by a map between free $R$-modules, which, as in linear algebra, can be thought of as a matrix.
+\end{definition}
+
+\begin{lemma}
+    Every $R$-module has a presentation.
+\end{lemma}
+\begin{proof}
+    Let $M$ be an $R$-module. As above, we have an exact sequence
+    \[
+    \begin{tikzcd}
+        R^{\oplus I} \arrow[r] &M \arrow[r] &0
+    \end{tikzcd}
+    \]
+    The kernel of this map is also an $R$-module, and is therefore also a quotient of a free $R$-module $R^{\oplus J}$. This yields a presentation
+    \[
+    \begin{tikzcd}
+        R^{\oplus J} \arrow[r] &R^{\oplus I} \arrow[r] &M \arrow[r] &0
+    \end{tikzcd}
+    \]
+\end{proof}
+
+As in the case of groups, this gives us a recipe to define $R$-modules. For example, we can define via presentation the $\mathbb Z$-module $\mathbb Z<e_1, e_2 | 2e_1 = 2e_2>$, which is the cokernel of the map $\mathbb Z \longrightarrow \mathbb Z^2$ via $1 \mapsto (2, -2)$. One can check that this is in fact $\mathbb Z \oplus \mathbb Z/(2)$.
+
+\begin{definition}
+    An $R$-module $M$ is called projective if it is a direct summand of a free module.
+\end{definition}
+
+\begin{lemma}
+    Let $M$ be an $R$-module. The following are equivalent.
+    \begin{enumerate}
+        \item $M$ is projective.
+        \item Any exact sequence $0 \longrightarrow A \longrightarrow B \longrightarrow M \longrightarrow 0$ splits.
+        \item For any exact sequence $0 \longrightarrow A \longrightarrow B \longrightarrow C \longrightarrow 0$, any map $M \longrightarrow C$ lifts to a map $M \longrightarrow B$, i.e. we have 
+        \[
+        \begin{tikzcd}
+            0 \arrow[r] &A \arrow[r] &B \arrow[r] &C \arrow[r] & 0\\
+            & & & M \arrow[ul, dashed] \arrow[u]
+        \end{tikzcd}
+        \]
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    2) $\implies$ 1). Consider the exact sequence
+        \[
+        \begin{tikzcd}
+            0 \arrow[r] &\ker(f) \arrow[r] &R^{\oplus I} \arrow[r, "f"] &M \arrow[r] & 0\\
+        \end{tikzcd}
+        \]
+        which splits by assumption, so $R^{\oplus I} = \ker(f) \oplus M$, so $M$ is projective.\\
+    3) $\implies$ 2). We have
+        \[
+        \begin{tikzcd}
+            0 \arrow[r] &A \arrow[r] &B \arrow[r] &M \arrow[r] & 0\\
+            & & & M \arrow[ul, dashed] \arrow[u, "\text{id}"]
+        \end{tikzcd}
+        \]
+        which is precisely a splitting.\\
+    1) $\implies$ 3). Let $M \oplus N = R^{\oplus I}$. Consider the diagram
+        \[
+        \begin{tikzcd}
+            0 \arrow[r] &A \arrow[r] &B \arrow[r] &C \arrow[r] & 0\\
+            & & & M \arrow[u]
+        \end{tikzcd}
+        \]
+        We desire a lift $M \longrightarrow B$. Indeed, we have
+        \[
+        \begin{tikzcd}
+            0 \arrow[r] &A \arrow[r] &B \arrow[r] &C \arrow[r] & 0\\
+            & & & M \arrow[u]\\
+            & & & R^{\oplus I} \arrow[u, twoheadrightarrow]
+        \end{tikzcd}
+        \]
+        By freeness we get
+        \[
+        \begin{tikzcd}
+            0 \arrow[r] &A \arrow[r] &B \arrow[r] &C \arrow[r] & 0\\
+            & & & M \arrow[u]\\
+            & & & R^{\oplus I} \arrow[u, twoheadrightarrow] \arrow[uul, dashed]
+        \end{tikzcd}
+        \]
+        And the restriction of this map to M yields the desired lift.
+\end{proof}

@@ -1,0 +1,25 @@
+
+The goal of this section is to show that the dimension of a polynomial ring in $n$ variables over a field has dimension $n$. The key idea is that an integral extension of rings preserves dimension. This will yield our induction.
+
+\begin{lemma}
+    Let $A \subseteq B$ be an integral exntension. Then $\dim(A) = \dim(B)$.
+\end{lemma}
+\begin{proof}
+    We have that the map $\spec(B) \longrightarrow \spec(A)$ is onto. Any chain $\frak p_0 \subsetneq \dots \subsetneq \frak p_n$ can be lifted, by surjectivity, to $\frak q_i \subseteq B$ prime. These are distinct as they map to distinct elements in $\spec(A)$. Thus, this is a chain of length $n$ in $B$, so $\dim(B) \geq n$. Thus, $\dim(A) \leq \dim(B)$. If $\dim(A) = \infty$ we are done. Suppose then that $\dim(A) = n$.\\
+    Suppose that there exists a chain of length $n + 1$ $\frak q_0 \subsetneq \dots \subsetneq \frak q_{n + 1}$ of primes in $B$. Let $\frak p_i = \frak q_i \cap A$. By a previous result, distinct nested prime ideals map to distinct primes in an integral extension. Thus, this becomes a chain of length $n + 1$ in $A$, a contradiction.
+\end{proof}
+
+\begin{theorem}
+    $\dim(k[x_1, \dots, x_n]) = n$
+\end{theorem}
+\begin{proof}
+    The base case of $n = 0$ is easy, as fields have dimension 0.\\
+    We know that $\dim(k[x_1, \dots, x_n]) \geq n$. On the other hand, let $\frak p_0 \subsetneq \dots \subsetneq \frak p_r$ be a chain of primes in $k[x_1, \dots, x_n]$. We then want $r \leq n$. We have that $\frak p_1 \neq 0$, so let $f \in \frak p_1 - 0$. We may assume without loss of generality that $f$ is a nonzero constant times a monic polynomial in $x_n$. Then this monic polynomial is in $\frak p_1$. This creates a relation in $k[x_1, \dots, x_n]/\frak p_1$ that allows us to kill higher degree terms. Indeed, this tells us that $k[x_1, \dots, x_n]/\frak p_1$ is finite over $k[x_1, \dots, x_{n-1}]$. By the Noether normalization lemma, there is some $s$ such that $k[x_1, \dots, x_s] \subseteq k[x_1, \dots, x_n]/\frak p_1$ is a finite (hence integral) extension of rings. The above tells us that we can take $s \leq n - 1$. By induction, $\dim(k[x_1, \dots, x_s]) = s$, so by the lemma, $\dim(k[x_1, \dots, x_n]/\frak p_1) = s$. Then by correspondence, $\frak p_1 \subsetneq \dots \subsetneq \frak p_r$ has length at most $n - 1$, so $r \leq n$.
+\end{proof}
+
+\begin{corollary}
+    let $R$ be an algebra of finite type over a field $k$. Then $\dim(R) = \trdeg(\Frac(R)/k)$.
+\end{corollary}
+\begin{proof}
+    By the Noether normalization lemma, there is a finite extension $k[x_1, \dots, x_n] \subseteq R$. Then $\dim(R) = n$. As localizations are flat, we have a finite extension of domains $k(x_1, \dots, x_n) \subseteq R \otimes_{k[x_1, \dots, x_n]} k(x_1, \dots, x_n)$. Then $R \otimes_{k[x_1, \dots, x_n]} k(x_1, \dots, x_n)$ is in fact a field, so it equals $\Frac(R)$. Then $\Frac(R)/k(x_1, \dots, x_n)$ is algebraic.
+\end{proof}

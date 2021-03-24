@@ -1,0 +1,96 @@
+
+We say that a property of $R$-modules is \textit{local} if it holds if and only if it holds at the localization at every prime ideal. This also often happens if and only if it holds at the localization at every maximal ideal.
+
+\begin{lemma}
+    Let $M$ be an $R$-module. The following are equivalent.
+    \begin{enumerate}
+        \item $M = 0$
+        \item $M_{\frak p} = 0$ for all $\frak p$ prime.
+        \item $M_{\frak m} = 0$ for all $\frak m$ maximal.
+    \end{enumerate}
+    Which says that a module being $0$ is a local property.
+\end{lemma}
+\begin{proof}
+    Certainly $1) \implies 2) \implies 3)$. Suppose then that $3)$ holds. Suppose that $M \neq 0$. As $x \neq 0$, $1 \notin \ann_R(x)$, so $\ann_R(x) \subseteq \frak m$ for some maximal ideal $\frak m$. We claim then that $x \neq 0$ in $M_{\frak m}$. Indeed, if it were $0$, then there would exist a $u \notin \mathfrak m$ such that $ux = 0$. But then $u \in \ann_R(x) \subseteq \mathfrak m$, contradiction.
+\end{proof}
+
+\begin{lemma}
+    Let $f \colon M \longrightarrow N$ be $R$-linear. The following are equivalent.
+    \begin{enumerate}
+        \item $f$ is injective.
+        \item $f_{\mathfrak p}$ is injective for all $\frak p$ prime.
+        \item $f_{\mathfrak m}$ is injective for all $\frak m$ maximal.
+    \end{enumerate}
+    Which says that being injective is a local property.
+\end{lemma}
+\begin{proof}
+    $1) \implies 2)$. This follows from exactness of localization.\\
+    $2) \implies 3)$. Clear.\\
+    $3) \implies 1)$. If $f$ was not injective then $\ker(f) \neq 0$, so as a module being $0$ is local, there exists some maximal ideal $\frak m$ such that $\ker(f)_{\frak m} \neq 0$. This would yield the desired contradiction if $\ker(f)_{\frak m} = \ker(f_{\frak m})$. Indeed, consider the exact sequence
+    \[
+    \begin{tikzcd}
+        0 \arrow[r] &\ker(f) \arrow[r] &M \arrow[r] &N
+    \end{tikzcd}
+    \]
+    By exactness of localization, we have an exact sequence
+    \[
+    \begin{tikzcd}
+        0 \arrow[r] &\ker(f)_{\frak m} \arrow[r] &M_{\frak m} \arrow[r] &N_{\frak m}
+    \end{tikzcd}
+    \]
+    which yields the desired equality.
+\end{proof}
+
+\begin{remark}
+    The same proof applied to $\cok(f)$ shows that surjectivity is also local. Thus, bijectivity is local as well. This does not, however, say that modules being isomorphic is a local property, as the isomorphisms at each localization need not come from the isomorphism itself.
+\end{remark}
+
+\begin{definition}
+    For a prime ideal $\frak p$, we define the residue field of $R$ at $\frak p$ to be $\Frac(R/\frak p)$.
+\end{definition}
+
+\begin{definition}
+    For an prime ideal $\frak p$, and an $R$-module $M$, we define the fiber of $M$ at $\frak p$ to be $M \otimes_R (R/\frak p)$.
+\end{definition}
+
+\begin{remark}
+    For $I \subseteq R$ an ideal, observe that $M \otimes_R (R/I) = M/IM$. Indeed, tensor the exact sequence
+    $
+    \begin{tikzcd}
+        I \arrow[r] &R \arrow[r] &R/I \arrow[r] &0
+    \end{tikzcd}
+    $
+    with $M$ to yield the exact sequence (by right exactness of the tensor product)
+    $
+    \begin{tikzcd}
+        I \otimes M \arrow[r] &R \otimes M \arrow[r] &R/I \otimes M \arrow[r] &0
+    \end{tikzcd}
+    $,
+    which becomes
+    $
+    \begin{tikzcd}
+        IM \arrow[r] &M \arrow[r] &R/I \otimes M \arrow[r] &0
+    \end{tikzcd}
+    $.
+    Then by exactness, $M \otimes R/I = M/IM$.
+\end{remark}
+
+Note that the local properties we described above do not necessarily generalize to being ``fiber local". For example, we claim that there exists a nonzero $\mathbb Z$-module whose fiber at all prime ideals is $0$. Indeed, take $\mathbb Q$. Then as $p \mathbb Q = \mathbb Q$, the fibers are all $0$, but $\mathbb Q \neq 0$. There is, however, an approximation of this when dealing with finitely generated modules.
+
+\begin{theorem}[Nakayama's lemma]
+    Let $R$ be a local ring with maximal ideal $\frak m$. Let $M$ be a finitely generated $R$-module. Then $M = 0$ if and only if its fiber at $\frak m$ is $0$, i.e. $M \otimes_R (R/\frak m) = M/\frak m M = 0$
+\end{theorem}
+\begin{proof}
+    Of course, if $M = 0$ its fiber at $\frak m$ is $0$. Conversely, let $M = \frak m M$. As $M$ is finitely generated, let $x_1, \dots, x_n \in M$ generate $M$. Let $n$ be minimal. Suppose that $M \neq 0$. As $\frak m M = M$, we have $x_n \in \frak m M$. Then $x_n = a_1 x_1 + \dots + a_n x_n$, each $a_i \in \frak m$. Thus, $(1-a_n)x_n = a_1 x_1 + \dots + a_{n-1} x_{n-1}$. Furthermore, $1 - a_n \notin \frak m$, so as $R$ is local, $1 - a_n \in R^\times$. Then by dividing, $x_n$ is an $R$-linear combination of $x_1, \dots, x_{n-1}$, but $n$ was chosen to be minimal.
+\end{proof}
+
+\begin{remark}
+    To fully realize this as a generalization of local properties, one can show that for any ring $R$ and a finitely generated $R$-module $M$ that $M = 0$ if and only if all fibers of $M$ at the maximal ideals of $R$ are $0$. Indeed, we can apply Nakayama's lemma to each $R_{\frak m}$-module $M_{\frak m}$ for $\frak m$ maximal.
+\end{remark}
+
+\begin{corollary}
+    Let $M$ be a finitely generated module over a local ring $R$. Let $\frak m$ be its maximal ideal. Then $x_1, \dots, x_n \in M$ generate $M$ if and only if their image in $M \otimes_R (R/\frak m)$ generate it as an $R/\frak m$ vector space.
+\end{corollary}
+\begin{proof}
+    The forward direction is trivial. Conversely, suppose that the images of the $x_i$ in $M \otimes_R (R/\frak m)$ generate it as an $R/\frak m$ vector space. Let $R^{\oplus n} \longrightarrow M \longrightarrow Q \longrightarrow 0$ be exact, i.e. $Q$ is the cokernel of the map $R^{\oplus n} \longrightarrow M$. We would like to show that $Q = 0$. Indeed, the surjection $M \longrightarrow Q$ yields a surjection $M/\frak m M \longrightarrow Q/\frak m Q$. As the $x_i$ map to $0$ in $Q$, their image maps to $0$ in $Q/\frak m Q$. As the $x_i$ span $M/\frak m M$ by assumption, their image spans $Q/\frak m Q$, so $Q/\frak m Q$ is $0$, so as $M$ is finitely generated $Q$ is as well. Thus, we are done by Nakayama's lemma.
+\end{proof}

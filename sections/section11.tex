@@ -1,0 +1,35 @@
+
+\begin{theorem}
+    Let $R$ be a noetherian ring. Then $X = \spec R$ is a finite union of irreducible closed subsets $X = X_1 \cup \dots \cup X_n$ with no $X_i \subseteq X_j$ for $i \neq j$. Moreover, this decomposition is unique. We call these the irreducible components of $X$.
+\end{theorem}
+\begin{proof}
+    Suppose that no such decomposition exists. Then in particular, $X$ is nonempty and not irreducible. Hence, $X = X_1 \cup Y_1$, both of which are closed and neither are the whole of $X$. $X_1$ and $Y_1$ cannot both be written as a finite union of irreducibles as above, as otherwise $X$ would have such a decomposition. Without loss of generality, say $X_1$ does not have such a decomposition. We repeat this process and deduce that $X_1 = X_2 \cup Y_2$ closed subsets, neither of which are the whole space, and $X_2$ having no such decomposition. Iterating this process, we get a strictly descending chain of irreducible closed subsets $X_1 \supsetneq X_2 \supsetneq X_3 \supsetneq \dots$. This corresponds to a strictly increasing chain of ideals in $R$, contradicting $R$ being noetherian. Thus, such a decomposition exists. The condition abotut $X_i \subseteq X_j$ can be achieved by deleting these repeats.\\
+    As for uniqueness, it suffices to show that for any radical ideal $I$, that if $\frak p_1 \cap \dots \cap \frak p_n = I = \frak q_1 \cap \dots \cap \frak q_m$, the $\frak p_i$ distinct prime ideals not containing each other. Similarly for the $\frak q_j$. We have then that $\frak p_1 \cap \dots \cap \frak p_n = \bigcap V(I) = \frak q_1 \cap \dots \cap \frak q_m$. We claim that each $\frak p \in V(I)$ contains some $\frak p_i$. If not, there exists some $x_i \in \frak p_i - \frak p$ for all $i$. Then $x = x_1 \dots x_n \in \frak p_1 \cap \dots \cap \frak p_n \subseteq \bigcap V(I) \subseteq \frak p$, but $x \notin \frak p$ by primality. In particular, each $\frak q_j$ contains some $\frak p_i$. Symmetrically, $\frak p_i$ contains some $\frak q_k$. Then $\frak q_k \subseteq \frak p_i \subseteq \frak q_j$, so $k = j$ by assumption. Hence, each $\frak q_j$ equals some $\frak p_i$ and vice versa, proving the desired uniqueness.
+\end{proof}
+
+\begin{theorem}
+    Let $I \subseteq R$ an ideal of a noetherian ring. Then there exists some $N \geq 1$ such that $\rad(I)^N \subseteq I \subseteq \rad(I)$.
+\end{theorem}
+\begin{proof}
+    Of course, we need only show $\rad(I)^N \subseteq I$. As $R$ is noetherian, $\rad(I) = (x_1, \dots, x_m)$. Let $N$ be the max of the $N_i$ such that $x_i^{N_i} \in I$. Let $a > Nm$ be an integer. Then Let $y_1, \dots, y_a$ be $a$ not necessarily distinct generators of $\rad(I)$. Then by the pidgeonhole principle, some $x_i^{N+1}$ divides $y_1 \dots y_a$. Then $y_1 \dots y_a \in I$, so $\rad(I)^a \subseteq I$, as any $a$-fold product of generators of $\rad(I)$ are in $I$.
+\end{proof}
+
+\begin{lemma}
+    Let $M$ be a nonzero module over a noetherian ring $R$. Then there exists a nonzero $x \in M$ such that $\ann_R(x)$ is a prime ideal.
+\end{lemma}
+\begin{proof}
+    Indeed, consider the set $S$ of ideals of the form $\ann_R(x)$ for $x \neq 0$. Indeed, as $R$ is noetherian, this set has a maximal element. Call it $I = \ann_R(x_0)$ for some $x_0 \neq 0$. We claim that this is prime. Indeed, $1 \notin I$ as $x_0 \neq 0$. Now let $ab \in I$. Suppose neither $a$ nor $b$ are in $I$. Then $ax_0, bx_0 \neq 0$ yet $abx_0 = 0$. Then $J = \ann_R(ax_0) \in S$. Furthermore, $I \subseteq J$ as $rx_0 = 0$ implies that $rax_0 = 0$. Then $J = I$ by maximality. However, $b \in J$ as $abx_0 = 0$, yet $b \notin I$ as $bx_0 \neq 0$. Contradiction.
+\end{proof}
+
+\begin{theorem}
+    Let $M$ be a finitely generated module over a noetherian ring $R$. Then there is a finite sequence of submodules $0 = M_0 \subseteq M_1 \subseteq \dots \subseteq M_r = M$ such that each $M_i/M_{i-1}$ is isomorphic to some $R/\frak p_i$ for $\frak p_i$ prime.
+\end{theorem}
+\begin{proof}
+    If $M = 0$ we are done, so suppose otherwise. By the lemma, there exists some $x \neq 0$ such that $\frak p_1 = \ann_r(x)$ is prime. Let $M_1 = Rx$. Then $M_1/M_0 = M_1$ and $M_1 \cong R/\frak p_1$ by the surjection 
+    $
+    \begin{tikzcd}
+        R \arrow[r, "\cdot x"] &M_1
+    \end{tikzcd}
+    $.
+    If $M = M_1$ we are done, so suppose otherwise. Then $M/M_1 \neq 0$, so there exists a submodule $P \subseteq M/M_1$ that is isomorphic to some $R/\frak p_2$. Then let $M_2$ be the inverse image of $P$. This satisfies the desired property. Repeat this process. As $M$ is finitely generated and $R$ is noetherian, this process must terminate, so we get the desired filtration.
+\end{proof}

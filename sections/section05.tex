@@ -1,0 +1,122 @@
+
+\begin{definition}
+    Let $A$ and $B$ be $R$-modules. We define the tensor product of $A$ and $B$ to be an $R$-module $A \otimes_R B$ along with an $R$-bilinear map $A \times B \longrightarrow A \otimes_R B$ that is universal, i.e. for any $R$-bilinear map $A \times B \longrightarrow M$, we have the following commutative diagram
+    \[
+    \begin{tikzcd}
+        A \times B \arrow[d] \arrow[r] & A \otimes_R B \arrow[dl, dashed, "\exists \text{!}"]\\
+        M
+    \end{tikzcd}
+    \]
+    with the induced map $R$-linear.
+\end{definition}
+
+\begin{lemma}
+    The tensor product of two $R$-modules exists.
+\end{lemma}
+\begin{proof}
+    First, write the basis elements of $R^{\oplus A \times B}$ as $a \otimes b$. One can show that
+    
+    %okay this shit is so fucking weird
+    %add a line of whitespace between the \left and \right and everything fucking breaks
+    %why????????????????
+    \[
+    A \otimes_R B = \frac{R^{\oplus A \times B}}{
+    \left(
+        \left\{
+            \begin{align*}
+               (a_1 + a_2) \otimes b &= a_1 \otimes b + a_2 \otimes b\\
+                a \otimes (b_1 + b_2) &= a \otimes b_1 + a \otimes b_2\\
+                (ra) \otimes b        &= r(a \otimes b)\\
+                a \otimes (rb)        &= r(a \otimes b)
+            \end{align*}
+            \middle| \,a_1, a_2, a \in A, b_1, b_2, b \in B
+        \right\}
+    \right)
+    }
+    \]
+    satisfies the desired universal property, with the map $A \times B \longrightarrow A \otimes_R B$ defined as the composition $A \times B \longrightarrow R^{\oplus A \times B} \longrightarrow A \otimes_R B$.
+\end{proof}
+
+\begin{remarks}
+    \begin{enumerate}
+        \item Elements of $M \otimes_R N$ look like $\sum_{i=1}^n r_i(m_y \otimes n_i)$. The $r_i$ can be omitted using the above relations. This is in general not a unique representation.
+        \item It is hard to tell when an element of $M \otimes_R N$ is $0$. For example, in $\mathbb Q \otimes_{\mathbb Z} \mathbb Z/(2)$, we have
+                \begin{align*}
+                    1 \otimes 1 &= \left(2 \cdot \frac{1}{2}\right) \otimes 1\\
+                    &= \frac{1}{2} \otimes 2\\
+                    &= \frac{1}{2} \otimes 0\\
+                    &= 0
+                \end{align*}
+        \item In the case of $R$ noncommutative, we can still define a tensor product of a right $R$-module $A$ and a left $R$-module $B$. We must rewrite the relations above to instead say $(ar) \otimes b = a \otimes (rb)$. However, this does not yield the structure of an $R$-module, and is only an abelian group.
+        \item When it is clear from context we omit the subscript $R$.
+    \end{enumerate}
+\end{remarks}
+
+\begin{lemma}
+    Let $M, N, P, \{N_i\}_{i \in I}$ be $R$-modules.
+    \begin{enumerate}
+        \item $M \otimes N \cong N \otimes M$
+        \item $(M \otimes N) \otimes P \cong M \otimes (N \otimes P)$
+        \item $R \otimes M \cong M$
+        \item $M \otimes \bigoplus_{i \in I} N_i \cong \bigoplus_{i \in I} M \otimes N_i$
+    \end{enumerate}
+    with all isomorphisms canonical.
+\end{lemma}
+
+\begin{remark}
+Point 4. in the lemma is actually a consequence of the more general fact that the functor $- \otimes M$ is left adjoint to $\Hom(M, -)$ and is therefore cocontinuous. In particular, as the direct sum is the coproduct in $\mathbf{R-Mod}$, point 4. follows.
+\end{remark}
+
+\begin{lemma}
+    Let
+    \[
+    \begin{tikzcd}
+        A \arrow[r, "f"]
+        &B \arrow[r, "g"]
+        &C \arrow[r] 
+        &0
+    \end{tikzcd}
+    \]
+    be exact and let $M$ be an $R$-module. Then 
+    \[
+    \begin{tikzcd}
+        A \otimes M \arrow[r, "f \otimes \text{id}"]
+        &B \otimes M \arrow[r, "g \otimes \text{id}"]
+        &C \otimes M \arrow[r] 
+        &0
+    \end{tikzcd}
+    \]
+    is exact.
+\end{lemma}
+\begin{proof}
+    Surjectivity of $g \otimes \text{id}$ is immediate from surjectivity of $g$. For exactness at $B \otimes M$, prove that for any $R$-module N, there is a one to one correspondence between maps $C \otimes M \longrightarrow N$ and maps $B \otimes M \longrightarrow N$ that vanish on $A \otimes M$, then use Yoneda's lemma.
+\end{proof}
+
+\begin{remark}
+    This is not true for $0 \longrightarrow A \longrightarrow B$. Indeed, take the exact sequence of $\mathbb Z$ modules 
+    \begin{tikzcd}
+        0 \arrow[r] &\mathbb Z \arrow[r, "\cdot 2"] &\mathbb Z
+    \end{tikzcd}.\\
+    We tensor this with $\mathbb Z / (2)$ to get the sequence 
+    \begin{tikzcd}
+        0 \arrow[r] &\mathbb Z \otimes \mathbb Z/(2) \arrow[r, "*2"] &\mathbb Z \otimes \mathbb Z/(2)
+    \end{tikzcd}. This map is actually the $0$ map and is therefore not injective, so the sequence is no longer exact.
+\end{remark}
+
+\begin{example}
+    Applying the lemma to 
+    \begin{tikzcd}
+        R \arrow[r, "\cdot f"]
+        &R \arrow[r]
+        &R/(f) \arrow[r] 
+        &0
+    \end{tikzcd}
+    , we tensor this with an $R$-module M to get the exact sequence
+    \begin{tikzcd}
+        M \arrow[r, "\cdot f"]
+        &M \arrow[r]
+        &M \otimes R/(f) \arrow[r] 
+        &0
+    \end{tikzcd}.
+    This allows us to compute the tensor product of any two finitely generated modules over a PID by the structure theorem.
+\end{example}

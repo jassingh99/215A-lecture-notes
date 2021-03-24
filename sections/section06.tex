@@ -1,0 +1,29 @@
+
+\begin{definition}
+    Let $A$ be a ring. An $A$-algebra is a ring $B$ with a ring homomorphism $A \longrightarrow B$. This induces an $A$-module structure on $B$. An $A-algebra$ homomorphism $B_1 \longrightarrow B_2$ is a ring homomorphism such that
+    \[
+    \begin{tikzcd}
+        B_1 \arrow[r] &B_2\\
+        A \arrow[u] \arrow[ur]
+    \end{tikzcd}
+    \]
+    commutes.
+\end{definition}
+
+\begin{remarks}
+    \begin{enumerate}
+        \item $\mathbb Z$ is initial in $\mathbf{Ring}$, so $\mathbb Z$-algebras are just rings, like how $\mathbb Z$-modules are just abelian groups.
+        \item The polynomial ring $A[S]$ is the free $A$-algebra on $S$.
+    \end{enumerate}
+\end{remarks}
+
+\begin{definition}
+    An $A$-algebra $B$ is said to be of finite type (as an $A$-algebra) if it is finitely generated as an $A$-algebra, i.e. if there exist elements $a_1, \dots, a_n$ such that every element of $B$ is a polynomial in the $a_i$. Equivalently, that there exists a surjection $A[x_1, \dots, x_n] \longrightarrow B$.
+\end{definition}
+
+\begin{definition}
+    An affine variety over a field $k$ is $\spec R$ for some $R$ a domain of finite type over $k$. We specifically define $\mathbb{A}_{k}^n = \spec(k[x_1, \dots, x_n])$.
+\end{definition}
+
+For an $A$-algebra $B$, we look at two functors to look at. One is $B-Mod \longrightarrow A-Mod$ via restriction of scalars. Another is called extension of scalars, which is a functor $A-Mod \longrightarrow B-Mod$ via $M \mapsto M \otimes B$. By right exactness of the tensor product, extension of scalars preserves presentations. Indeed, take $M = \mathbb Z<e_1, e_2|2e_1, 2e_2>$. Then\[M \otimes \mathbb Q = \mathbb Q<e_1, e_2|2e_1, 2e_2> = \mathbb Q\]
+Furthermore, if $B$ and $C$ are $A$-algebras, then $B \otimes C$ is an $A$-algebra via $(b_1 \otimes b_2)(c_1 \otimes c_2) = b_1 c_1 \otimes b_2 c_2$, which is well defined by universal property. This extended linearly defined the desired ring structure.

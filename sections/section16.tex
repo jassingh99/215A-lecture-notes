@@ -1,0 +1,66 @@
+
+Recall that a ring is artinian if it satisfies the dcc for ideals, i.e all descending sequences of ideals terminate. This is dual to the notion of a noetherian ring, which satisfies the acc. Surprisingly, one can show that all artinian rings are noetherian.
+
+\begin{lemma}
+    In an artinian ring, all prime ideals are maximal.
+\end{lemma}
+\begin{proof}
+    It suffices to show that artinian domains are fields. Indeed, let $R$ be an artinian domain and let $x \in R - 0$. Then consider the descending sequence of ideals $(x) \supseteq (x^2) \supseteq (x^3) \supseteq \dots$. As $R$ is artinian, this must terminate, so some $(x^n) = (x^{n+1})$. In particular, $x^n \in (x^{n+1})$, so $x^n = y x^{n+1}$, As $R$ is a domain and $x \neq 0$, $1 = xy$ so $x \in R^\times$. Then $R$ is a field.
+\end{proof}
+
+\begin{lemma}
+    Artinian rings have finitely many maximal ideals.
+\end{lemma}
+\begin{proof}
+    Suppose there are distinct maximal ideals $\frak m_k$ for $k \geq 1$. Then we have the descending sequence $\frak m_1 \supseteq \frak m_1 \cap \frak m_2 \supseteq \dots$. Then we get a (strictly) ascending sequence $V(\frak m_1) \subseteq V(\frak m_1 \cap \frak m_2) \subseteq \dots$, which is $V(\frak m_1) \subseteq V(\frak m_1) \cup V(\frak m_2) \subseteq \dots$, which is $\{\frak m_1\} \subseteq \{\frak m_1, \frak m_2\} \subseteq \dots$. However, this contradicts $R$ being artinian, as maximal ideals are radical.
+\end{proof}
+
+These two lemmas combine to tell us that the spectrum of an artinian ring is a finite discrete space.
+
+\begin{definition}
+    The length of a strictly increasing chain of prime ideals $\frak p_0 \subsetneq \dots \subsetneq \frak p_r$ is $r$. The (Krull) dimension of a ring $R$ is the supremum of the lengths of strictly increasing chains of prime ideals.
+\end{definition}
+
+We see immediately that a ring has dimension 0 if and only if all prime ideals are maximal. Then the lemma says that artinian rings have dimension 0. The converse is not true. For example, let $R = k[x_1, x_2, \dots]/(x_i^2 : i \geq 1)$. Take a prime ideal $\frak p \subseteq R$. We have $0 = x_i^2 \in \frak p$, so $x_i \in \frak p$. Thus, $\frak p = (x_1, x_2, \dots)$, which is maximal. However, we will show that artinian = noetherian + dimension 0.
+
+\begin{examples}
+\begin{enumerate}
+    \item a PID has dimension 1
+    \item $k[x_1, x_2, \dots]$ has infinite dimension.
+    \item $\dim(0) = -\infty$ as $\sup(\emptyset) = \infty$. Furthermore, $\dim(R) = -\infty$ if and only if $R = 0$.
+    \item What is $\dim(k[x_1, \dots, x_n])$? We have the chain $0 \subsetneq (x_1) \subsetneq (x_1, x_2) \subsetneq \dots \subsetneq (x_1, x_2, \dots, x_n)$, which has length $n$, so $\dim(k[x_1, \dots, x_n]) \geq n$. It turns out that $\dim(k[x_1, \dots, x_n]) = n$.
+\end{enumerate}
+\end{examples}
+
+\begin{definition}
+    For a topological space $X$, define $\dim(X)$ to be the supremum of lengths of strictly increasing chains of irreducible closed subsets of $X$.
+\end{definition}
+
+Of course, the dimension of $\spec(R)$ is equal to the dimension of $R$ by the correspondence between irreducible closed subsets of $\spec(R)$ and $R$.
+
+We now proceed in the proof that artinian = noetherian + dimension 0.
+
+\begin{lemma}
+    Let $R$ be an artinian ring. Then $\nil(R)$ is nilpotent, i.e. there exists an $n \geq 0$ such that $\nil(R)^n = 0$. Recall that for a noetherian ring, we have that $\rad(I)^n \subseteq I \subseteq \rad(I)$.
+\end{lemma}
+\begin{proof}
+    Consider the descending chain $\nil(R) \supseteq \nil(R)^2 \supseteq \dots$. This must terminate, so there is some $m \geq 0$ such that $\nil(R)^m = \nil(R)^n$ for all $n \geq m$. Now let $I = \nil(R)^m$. We claim that $I = 0$. Suppose otherwise. Let $S = \{J \subseteq R \text{ an ideal}: IJ \neq 0\}$. This is nonempty as $R \in S$ by assumption. As $R$ is artinian, there is a least element of $S$, which we call $J$. Furthermore, as $IJ \neq 0$, there exists an $x \in J$ such that $xI \neq 0$. Hence, $(x) \subseteq J$ is in $S$, so by minimality, $J =(x)$. We can reduce this further. Indeed, $(xI) I = xI^2 = xI \neq 0$, so $xI = (x) = J$. Then there exists a $y \in I$ such that $xy = x$. Then we get $x = xy = xy^2 = xy^3 = \dots$. However, as $y \in I \subseteq \nil(R)$, some $y^n = 0$, so $x = xy^n = 0$, a contradiction.
+\end{proof}
+
+\begin{theorem}
+    A ring is artinian if and only if it is noetherian and dimension 0.
+\end{theorem}
+\begin{proof}
+    Let $R$ be artinian. We know that $\dim(R) = 0$, so it suffices to show that $R$ is noetherian. Indeed, let $\frak m_1, \dots, \frak m_n$ be the maximal ideals of $R$. These are all the prime ideals, so $\nil(R) = \bigcap_{i=1}^n \frak m_i$. Hence, $\nil(R) \supseteq \frak m_1 \dots \frak m_n$. By the lemma, there exists a $b \geq 1$ such that $\nil(R)^b = 0$. Thus, $(\frak m_1 \dots \frak m_n$)^b$. Then $\frak m_1^b \dots \frak m_n^b = 0$. By relabeling, we have the sequence $R \supseteq \frak m_1 \supseteq \frak m_1 \frak m_2 \supseteq \dots \supseteq \frak m_1 \dots \frak m_n = 0$ of maximal ideals.\\
+    Note that by linear algebra, for a vector space $V$ over a field $k$, the acc, dcc, and finite dimensionality are all equivalent. Furthermore, given an $R$-module $M$, the $R$-submodules of $M/ \frak m M$ are the same as the $R/\frak m$ submodules of $M/\frak m M$. As submodules and quotients of modules over an artinian ring are artinian, the successive quotients of the sequence described above are artinian $R$-modules. Thus, they are artinian $R/\frak m$ modules for any maximal ideal $\frak m$. Thus, they are also noetherian $R$-modules, so by induction $R$ is a noetherian $R$-module, hence a noetherian ring. The converse is similar.
+\end{proof}
+
+\begin{definition}
+    A dedekind domain is a noetherian normal domain of dimension 1.
+\end{definition}
+\begin{examples}
+    \begin{enumerate}
+        \item PIDs are dedekind domains.
+        \item $\mathcal O_K$ is a dedekind domain for any number field $K$.
+    \end{enumerate}
+\end{examples}

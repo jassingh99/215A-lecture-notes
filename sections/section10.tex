@@ -1,0 +1,73 @@
+
+\begin{definition}
+    A ring $R$ is called Noetherian if every increasing sequence of ideals terminates. Dually, we say a ring is Artinian if every descending sequence of ideals terminates. The Noetherian condition is called the ascending chain condition (acc) for ideals, and the Artinian condition is called the descending chain condition (dcc) for ideals.
+\end{definition}
+
+\begin{lemma}
+    Let $R$ be a ring. The following are equivalent.
+    \begin{enumerate}
+        \item $R$ is noetherian
+        \item All ideals of $R$ are finitely generated.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    $1) \implies 2)$. Let $I$ be an ideal of $R$. Suppose that $I$ is not finitely generated. In particular, it is nonzero. Then let $x_1 \in I - 0$. As $I$ is not finitely generated, $I \neq (x_1)$, so there exists $x_2 \in I - (x_1)$. Similarly, let $x_3 \in I - (x_1, x_2)$. Iterate this process to get a sequence $x_1, x_2, \dots$. By construction, this ensures that $(x_1) \subsetneq (x_1, x_2) \subsetneq (x_1, x_2, x_3) \subsetneq \dots$, but $R$ is noetherian.
+    $2) \implies 1)$. Let $I_1 \subseteq I_2 \subseteq I_3 \subseteq \dots$ be a chain of ideals. Then let $I = \bigcup\limits_{n \geq 1} I_n$. One may check that this is an ideal. Then by assumption, it is finitely generated, so $I = (x_1, \dots, x_n)$. Then there exists an $N \geq 1$ such that each $x_i \in I_N$. Then $I_N = I$, so the chain terminates at $N$.
+\end{proof}
+
+\begin{examples}
+    \begin{enumerate}
+        \item Fields are both artinian and noetherian.
+        \item $\mathbb Z$ is noetherian but not artinian. Indeed, it is a PID and $1 < \infty$ so it is noetherian. Furthermore, we have the strictly descending sequence $(2) \supsetneq (4) \supsetneq (8) \supsetneq \dots$, so $\mathbb Z$ is not artinian.
+        \item $k[x_1, x_2, \dots]$ is not noetherian. Indeed, take $(x_1) \subsetneq (x_1, x_2) \subsetneq (x_1, x_2, x_3) \subsetneq \dots$. However, as it is a domain, it is a subring of its quotient field, which is noetherian as it is a field. This shows that subrings of noetherian rings are not necessarily noetherian.
+    \end{enumerate}
+\end{examples}
+
+\begin{lemma}
+    Any quotient of a noetherian ring is noetherian. The same goes for artinian rings.
+\end{lemma}
+\begin{proof}
+    Correspondence.
+\end{proof}
+
+\begin{definition}
+    An $R$-module $M$ is said to satisfy the acc for submodules if any increasing sequence of submodules terminates. Note that $R$ is noetherian if and only if it satisfies acc as an $R$-module.
+\end{definition}
+
+\begin{lemma}
+    Let $0 \longrightarrow A \longrightarrow B \longrightarrow C \longrightarrow 0$ be an exact sequence of $R$-modules. Then $B$ satisfies the acc if and only if $A$ and $C$ both do.
+\end{lemma}
+\begin{proof}
+    Apply the five lemma to the chain of short exact sequences with chain maps defined by inclusion of the pullbacks and pushforwards of the chains.
+\end{proof}
+
+\begin{theorem}
+    Let $M$ be a finitely generated module over a noetherian ring $R$. Then every submodule of $M$ is finitely generated and $M$ satisfies the acc for submodules.
+\end{theorem}
+\begin{proof}
+    Let $R^{\oplus n} \longrightarrow M$ a surjection. As these properties are preserved by quotients, it suffices to prove this for $R^{\oplus n}$. Indeed, we have the short exact sequence
+    \[0 \longrightarrow R \longrightarrow R^{\oplus n} \longrightarrow R^{\oplus n-1} \longrightarrow 0\]
+    So as $R$ is noetherian, we are done by induction and the lemma.
+\end{proof}
+
+\begin{lemma}
+    Any localization of a noetherian ring is noetherian.
+\end{lemma}
+\begin{proof}
+    Let $S \subseteq R$ a multiplicative subset. We claim that all ideals $I \subseteq R[S^{-1}]$ can be written as $J \cdot R[S^{-1}]$ for some ideal $J \subseteq R$ an ideal. Indeed, let $J$ be the preimage of $I$ under the standard map $R \longrightarrow R[S^{-1}]$. Certainly, $J \cdot R[S^{-1}] \subseteq I$. Conversely, let $\frac{a}{s} \in I$. Then $\frac{a}{1} \in I$ so $a \in J$, so $\frac{a}{s} \in J \cdot R[S^{-1}]$. Hence, $J \cdot R[S^{-1}] = I$. Now, take some ideal $J = I R[S^{-1}]$ be an ideal. As $R$ is noetherian, $I = (x_1, \dots, x_n)$, so $J = (x_1, \dots, x_n) \subseteq R[S^{-1}]$. Thus, $R[S^{-1}]$ is noetherian.
+\end{proof}
+
+\begin{theorem}[Hilbert Basis Theorem]
+    Let $R$ be noetherian. Then $R[x]$ is noetherian.
+\end{theorem}
+\begin{proof}
+    We show that ideals in $R[x]$ are finitely generated. Indeed, let $I \subseteq R[x]$ be an ideal. Let $I_j = \{a \in R : \exists \, f \in I \text{ of degree } j \text{ with leading coefficient } a\}$. This is certainly an ideals in $R$, and we have $I_0 \subseteq I_1 \subseteq I_2 \subseteq \dots$, so as $R$ is noetherian this terminates at, say, $N$. As $R$ is noetherian, we can find a finite set of generators $\{f_{j,k}\}_{k=1}^{m_j}$ for each $I_j$. For each $j, k$ there exists, by definition, a $g_{j, k} \in I$ of degree $j$ with leading coefficient $f_{j, k}$. We claim that the ${g_{j, k}}$ for $j \leq N$ generate $I$. This is a finite set, so this will conclude the proof. Indeed, take $h \in I$. Let $a$ be its leading coefficient, and let its degree be $d$. Suppose that $d \leq N$ Then $a = \sum_{i=1}^{m_d} b_j f_{d, j}$. Then $h - \sum_{i=1}^{m_d} b_j g_{d, j}$ has degree less than d, so we are done by induction. We must now only consider the case $d > N$. Indeed, then $a \in I_d = I_N$, so $a = \sum_{j=1}^{m_N} b_j f_{N, j}$. Then $h - x^{d - N} \sum_{j=1}^{m_N} b_j g_{N, j}$ has degree less than $d$, so we are done by induction.
+\end{proof}
+
+\begin{remark}
+    $k[x]$ is  PID, but as proven in the homework, $k[x, y]$ has no upper bound on the number of generators needed per ideal. Specifically, we showed that the ideals $(x, y)^n$ cannot be generated by fewer than $n$ elements. However, by the Hilbert Basis Theorem, this ring is nevertheless noetherian.
+\end{remark}
+
+\begin{corollary}
+    Finitely generated algebras over a noetherian ring are noetherian.
+\end{corollary}

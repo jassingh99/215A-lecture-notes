@@ -1,0 +1,150 @@
+
+\begin{definition}
+    Let $R$ be a ring. A subset $S \subseteq R$ is called multiplicative if it contains $1$ and is closed under multiplication. In other words, it is a submonoid of the multiplicative monoid of $R$
+\end{definition}
+
+\begin{definition}
+    Let $S \subseteq R$ be a multiplicative subset. We define the localization of $R$ at $S$ to be the ring $R[S^{-1}] = \left\{\frac{r}{s} : r\in R, s \in S\right\}$ where $\frac{r_1}{s_1} = \frac{r_2}{s_2}$ if there is some $u \in S$ such that $u(r_1 s_2 - r_2 s_1) = 0$. The arithmetic on the localization is defined by $\frac{r_1}{s_1} + \frac{r_2}{s_2} = \frac{r_1 s_2 + r_2 s_1}{s_1 s_2}$ and $\frac{r_1}{s_1}\frac{r_2}{s_2} = \frac{r_1 r_2}{s_1 s_2}$. One may check that these operations are well defined and induce a ring structure.
+\end{definition}
+
+There is a canonical map $R \longrightarrow R[S^{-1}]$ via $r \mapsto \frac{r}{1}$. In $R[S^{-1}]$, we often write $r = \frac{r}{1}$. It is clear that localizing at $S$ forces all elements of $S$ to map to units under this map. This is, in fact, a universal property.
+
+\begin{lemma}
+    Let $S \subseteq R$ be a multiplicative subset. Let $R \longrightarrow A$ be a ring homomorphism sending $S$ to the unit group of $A$. Then we have the following commutative diagram.
+    \[
+    \begin{tikzcd}
+        R \arrow[d] \arrow[r] &R[S^{-1}] \arrow[dl, dashed]\\
+        A
+    \end{tikzcd}
+    \]
+\end{lemma}
+
+ Looking carefully at the definition of localization of a ring, we see that the numerator only requires multiplication of elements of $R$ by elements of $S$. We need not multiply general elements of $R$ by general elements of $S$. Indeed, this tells us that we can use the same construction to localize an $R$-module $M$ at $S$. Indeed, this has a similar universal property, but we must reinterpret what it means for elements of $S$ to become units. This condition becomes the map 
+ $
+ \begin{tikzcd}
+    M \arrow[r, "\cdot s"] &M
+ \end{tikzcd}
+ $
+ is a bijection for all $s \in S$.
+ 
+ \begin{lemma}
+     Let $S \subseteq R$ be a multiplicative subset, $M, N$ $R$-modules. Suppose there is an $R$-linear map $M \longrightarrow N$ such that multiplication by elements of $S$ is a bijection in $N$. Then we have the following.
+    \[
+    \begin{tikzcd}
+        M \arrow[d] \arrow[r] &M[S^{-1}] \arrow[dl, dashed]\\
+        N
+    \end{tikzcd}
+    \]
+ \end{lemma}
+ 
+ \begin{examples}
+    \begin{enumerate}
+        \item Let $f \in A$. We define $A[1/f]$ to be the localization of $A$ at the multiplicative subset $\{1, f, f^2, f^3, \dots\}$. Note that if $f$ is nilpotent then this is the $0$ ring. This is because localizing at $0$ is always the $0$ ring.
+        
+        \item Let $\frak p$ be a prime ideal of $A$. We define $A_{\frak p}$ to be the localization of $A$ at $A - \frak p$.
+    \end{enumerate}
+ \end{examples}
+ 
+ \begin{theorem}
+    Let $S \subseteq A$ a multiplicative subset. Then there is a one to one correspondence between $\spec(A[S^{-1}])$ and $\{\frak p \in \spec A : \frak p \cap S = \emptyset\}$
+ \end{theorem}
+ \begin{proof}
+    Let $f$ be the canonical map $A \longrightarrow A[S^{-1}]$. Let $g \colon \spec(A[S^{-1}]) \longrightarrow \spec A$ be the induced map. We show first that $g$ is one to one. Indeed, let $g(\frak p) = g(\frak q)$. Observe that $\frac{a}{s} \in \frak p \iff \frac{a}{1} \in \frak p \iff a \in g(\frak p)$. Thus, $\frak p = \frak q$.\\
+    It is clear that $\im(g) \subseteq \{\frak p \in \spec A : \frak p \cap S = \emptyset\}$. Conversely, let $\frak p \in \spec A$ such that $\frak p \cap S = \emptyset$. We then have a map $A \longrightarrow \Frac(A/\frak p)$. As $\frak p \cap S = \emptyset$, $S$ maps to the units (i.e. the nonzero elements) of $\Frac(A/\frak p)$. Then by universal property, there is a map $h \colon A[S^{-1}]\longrightarrow \Frac(A/\frak p)$ such that
+    \[
+    \begin{tikzcd}
+        A \arrow[d] \arrow[r, "f"] &A[S^{-1}] \arrow[dl, dashed, "h"]\\
+        \Frac(A/\frak p)
+    \end{tikzcd}
+    \]
+    commutes. Let $\frak q$ = $h^{-1}[0]$. Then $g(\frak q) = f^{-1}[\frak q] = f^{-1}[h^{-1}[0]]$, which equals the pullback of $0$ along the map $A \longrightarrow \Frac(A/\frak p)$ by commutativity of the diagram. This is, of course, the kernel of this map, which is $\frak p$. Then $g(\frak q) = \frak p$, so $g$ provides the desired correspondence.
+ \end{proof}
+ 
+  \begin{examples}
+    \begin{enumerate}
+        \item $\spec(A[1/f]) = \{\frak p \in \spec(A) : f \notin \frak p\}$
+        
+        \item $\spec(A_{\frak p}) = \{\frak q \in \spec(A) : \frak q \subseteq \frak p\}$
+    \end{enumerate}
+ \end{examples}
+ 
+ \begin{definition}
+     A ring is called local if it has exactly one maximal ideal. For a local ring $A$ with maximal ideal $\frak m$, we call $A/\frak m$ the residue field of $A$.
+ \end{definition}
+ 
+ \begin{lemma}
+     A ring $A$ is local if and only if $A - A^\times$ is an ideal.
+ \end{lemma}
+ \begin{proof}
+    Let $A$ be local with maximal ideal $\frak m$. Then $A - A^\times$ is the union of all maximal ideals of $A$, which is of course just $\frak m$, an ideal. Conversely, suppose $\frak m = A - A^\times$ is an ideal. It is certainly maximal, as any ideal strictly containing it will contain a unit. Also, let $\frak n$ be another maximal ideal. As it contains no units, we have $\frak n \subseteq \frak m$, so by maximality, $\frak n = \frak m$. Thus, $A$ is local.
+ \end{proof}
+ 
+\begin{example}
+    Let $A = k[[x_1, \dots, x_n]]$. Then $A^\times = \{f \in A : f(0) \neq 0\}$, so $A - A^\times = \{f \in A : f(0) = 0\}$, which is an ideal so $A$ is local. Indeed, $A - A^\times = (x_1, \dots, x_n)$, so its residue field is $k$.
+\end{example}
+
+Of course, the term localization and the term local ring sound alike. We provide the connection in the following theorem.
+
+\begin{theorem}
+    The localization of a ring at a prime ideal is local.
+\end{theorem}
+\begin{proof}
+    Let $A$ be a ring, $\frak p$ a prime ideal. By the correspondence above, we have that $\spec(A_{\frak p}) \cong \{\frak q \in \spec A : \frak q \subseteq \frak p\}$. This correspondence is also order preserving, so as the unique maximal element of $\{\frak q \in \spec A : \frak q \subseteq \frak p\}$ is $\frak p$, there is a unique maximal element of $\spec(A_{\frak p})$, so $A_{\frak p}$ is local. Furthermore, its maximal ideal is the ideal generated by $\frak p$.
+\end{proof}
+
+\begin{remark}
+    The residue field of $A_{\frak p}$ is $\Frac(A/\frak p)$.
+\end{remark}
+
+\begin{examples}
+    \begin{enumerate}
+        \item $\mathbb Z_{(p)}$ is local with residue field $Z/(p)$.
+        \item $\mathbb C[x]_{(x)}$ is local with residue field $\mathbb C$.
+        \item $\mathbb C[x, y]_{(x)}$ is local with residue field $\mathbb C(y)$.
+    \end{enumerate}
+\end{examples}
+
+Localizing an $R$-module $M$ at $S$ yields $M[S^{-1}]$, which is both an $R$-module and an $R[S^{-1}]$-module. Furthermore, we may localize functions. Indeed, localizing the $R$-homomorphism 
+$
+\begin{tikzcd}
+    M \arrow[r, "f"] &N
+\end{tikzcd}
+$
+at $S$ yields an $R[S^{-1}]$-homomorphism 
+$
+\begin{tikzcd}
+    M[S^{-1}] \arrow[r] &N[S^{-1}]
+\end{tikzcd}
+$
+via $\frac{m}{s} \mapsto \frac{f(m)}{s}$. This means that localization is a functor from $\textbf{R-Mod}$ to $\mathbf{R[S^{-1}]-Mod}$. In fact, it's additive.
+
+\begin{theorem}
+    The functor $S^{-1} \colon \mathbf{R-Mod} \longrightarrow \mathbf{R[S^{-1}]-Mod}$ is exact.
+\end{theorem}
+\begin{proof}
+    Let
+    $
+    \begin{tikzcd}
+        M_1 \arrow[r, "f"] &M_2 \arrow[r, "g"] &M_3
+    \end{tikzcd}
+    $
+    be exact. Its localization at $S$ composes to $0$ as the localization functor is additive. That means that $\im(f[S^{-1}]) \subseteq \ker(g[S^{-1}])$. Conversely, let $\frac{m}{s} \in \ker(g[S^{-1}])$. Then $\frac{g(m)}{s} = 0$. Then there exists $u \in S$ such that $u g(m) = 0$, so $g(um) = 0$, so $um \in \ker(g) = \im(f)$. Then there exists an $x \in M_1$ such that $f(x) = um$. Then $\frac{f(x)}{us} = \frac{um}{us} = \frac{m}{s}$, so $\ker(g[S^{-1}]) \subseteq \im(f[S^{-1}])$.
+\end{proof}
+
+\begin{theorem}
+    There is a natural isomorphism between $M[S^{-1}]$ and $M \otimes_R R[S^{-1}]$.
+\end{theorem}
+\begin{proof}
+    Indeed, the $R$-bilinear map $\left(m, \frac{r}{s}\right) \mapsto \frac{rm}{s}$ induces a map $M \otimes_R R[S^{-1}] \longrightarrow M[S^{-1}]$ by universal property. The map $M \longrightarrow M \otimes_R R[S^{-1}]$ via $m \mapsto m \otimes 1$ induces a map $M[S^{-1}] \longrightarrow M \otimes_R R[S^{-1}]$ via universal property, as $S$ acts by bijections on $M \otimes_R R[S^{-1}]$. One can check that these are inverses. Then, one needs only check naturality in $M$, which is not hard to verify.
+\end{proof}
+
+\begin{remark}
+    Any localization of $R$ is flat as an $R$-module. For example, $\mathbb Q$ is flat over $\mathbb Z$. Furthermore, by cocontinuity of the tensor product, localization is cocontinuous and therefore commutes with direct sums.
+\end{remark}
+
+\begin{examples}
+    \begin{enumerate}
+        \item Let $M$ be the $\mathbb Z$-module $\mathbb Z^2 \oplus \mathbb Z/(2) \oplus \mathbb Z/(8) \oplus \mathbb Z/(5)$. Localizing this at $(0)$ yields $\mathbb Z_{(0)}^2 \oplus (\mathbb Z/(2))_{(0)} \oplus (\mathbb Z/(8))_{(0)} \oplus (\mathbb Z/(5))_{(0)} = \mathbb Q^2$
+        \item The same method yields that $M_{(2)} = (\mathbb Z/(2))^2 \oplus \mathbb Z/(2) \oplus \mathbb Z/(8)$.
+    \end{enumerate}
+\end{examples}
